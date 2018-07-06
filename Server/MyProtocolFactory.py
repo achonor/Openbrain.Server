@@ -26,11 +26,11 @@ class MyServerFactory(ServerFactory):
 
     def dataReceived(self, playerID, data):
         #解析协议
-        mainProto = cmd_pb2.MainProto()
-        mainProto.ParseFromString(data)
-        mainProto.playerID = playerID
+        rootProto = cmd_pb2.root_proto()
+        rootProto.ParseFromString(data)
+        rootProto.player_ID = playerID
         #交给服务类处理
-        #GGData.My_Server.requestServer(mainProto)
+        #GGData.My_Server.requestServer(rootProto)
 
     #返回数据给客户端
     def returnData(self, cPlayer, messageID, proto):

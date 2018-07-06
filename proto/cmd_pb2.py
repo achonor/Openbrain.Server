@@ -19,49 +19,49 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\tcmd.proto\"n\n\tMainProto\x12\x10\n\x08playerID\x18\x01 \x01(\x05\x12\x11\n\tmessageID\x18\x02 \x01(\x05\x12\x13\n\x0bmessageName\x18\x03 \x01(\t\x12\x13\n\x0bmessageData\x18\x04 \x01(\t\x12\x12\n\nserverTime\x18\x05 \x01(\x01\x62\x06proto3')
+  serialized_pb=_b('\n\tcmd.proto\"t\n\nroot_proto\x12\x11\n\tplayer_ID\x18\x01 \x01(\x05\x12\x12\n\nmessage_ID\x18\x02 \x01(\x05\x12\x14\n\x0cmessage_name\x18\x03 \x01(\t\x12\x14\n\x0cmessage_data\x18\x04 \x01(\t\x12\x13\n\x0bserver_time\x18\x05 \x01(\x01\"#\n\x0ereq_login_game\x12\x11\n\tuser_name\x18\x01 \x01(\tb\x06proto3')
 )
 
 
 
 
-_MAINPROTO = _descriptor.Descriptor(
-  name='MainProto',
-  full_name='MainProto',
+_ROOT_PROTO = _descriptor.Descriptor(
+  name='root_proto',
+  full_name='root_proto',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='playerID', full_name='MainProto.playerID', index=0,
+      name='player_ID', full_name='root_proto.player_ID', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='messageID', full_name='MainProto.messageID', index=1,
+      name='message_ID', full_name='root_proto.message_ID', index=1,
       number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='messageName', full_name='MainProto.messageName', index=2,
+      name='message_name', full_name='root_proto.message_name', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='messageData', full_name='MainProto.messageData', index=3,
+      name='message_data', full_name='root_proto.message_data', index=3,
       number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='serverTime', full_name='MainProto.serverTime', index=4,
+      name='server_time', full_name='root_proto.server_time', index=4,
       number=5, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
@@ -80,18 +80,57 @@ _MAINPROTO = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=13,
-  serialized_end=123,
+  serialized_end=129,
 )
 
-DESCRIPTOR.message_types_by_name['MainProto'] = _MAINPROTO
+
+_REQ_LOGIN_GAME = _descriptor.Descriptor(
+  name='req_login_game',
+  full_name='req_login_game',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='user_name', full_name='req_login_game.user_name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=131,
+  serialized_end=166,
+)
+
+DESCRIPTOR.message_types_by_name['root_proto'] = _ROOT_PROTO
+DESCRIPTOR.message_types_by_name['req_login_game'] = _REQ_LOGIN_GAME
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-MainProto = _reflection.GeneratedProtocolMessageType('MainProto', (_message.Message,), dict(
-  DESCRIPTOR = _MAINPROTO,
+root_proto = _reflection.GeneratedProtocolMessageType('root_proto', (_message.Message,), dict(
+  DESCRIPTOR = _ROOT_PROTO,
   __module__ = 'cmd_pb2'
-  # @@protoc_insertion_point(class_scope:MainProto)
+  # @@protoc_insertion_point(class_scope:root_proto)
   ))
-_sym_db.RegisterMessage(MainProto)
+_sym_db.RegisterMessage(root_proto)
+
+req_login_game = _reflection.GeneratedProtocolMessageType('req_login_game', (_message.Message,), dict(
+  DESCRIPTOR = _REQ_LOGIN_GAME,
+  __module__ = 'cmd_pb2'
+  # @@protoc_insertion_point(class_scope:req_login_game)
+  ))
+_sym_db.RegisterMessage(req_login_game)
 
 
 # @@protoc_insertion_point(module_scope)

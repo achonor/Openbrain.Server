@@ -38,18 +38,18 @@ def charToInt(str):
     return ret
 #封装协议
 def serialization(proto, playerID = 0, messageID = 0):
-    mainProto = cmd_pb2.MainProto()
-    mainProto.playerID  = playerID
-    mainProto.messageID = messageID
-    mainProto.messageName = proto.__class__.__name__
-    mainProto.serverTime = getSystemTime()
+    rootProto = cmd_pb2.root_proto()
+    rootProto.player_ID  = playerID
+    rootProto.message_ID = messageID
+    rootProto.message_name = proto.__class__.__name__
+    rootProto.server_time = getSystemTime()
     try:
-        mainProto.messageData = proto.SerializeToString()
+        rootProto.message_data = proto.SerializeToString()
     except Exception as e:
         print(e)
-        print(mainProto)
+        print(rootProto)
     #序列化包装后的协议
-    tmpStr = mainProto.SerializeToString()
+    tmpStr = rootProto.SerializeToString()
     tmpLen = len(tmpStr)
     tmpStr = intToChar(tmpLen) + tmpStr
     return tmpStr
