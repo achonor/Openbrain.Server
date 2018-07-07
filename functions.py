@@ -37,9 +37,9 @@ def charToInt(str):
         ret = (ret << 8) | ord(str[i])
     return ret
 #封装协议
-def serialization(proto, playerID = 0, messageID = 0):
+def serialization(proto, connectID = 0, messageID = 0):
     rootProto = cmd_pb2.root_proto()
-    rootProto.player_ID  = playerID
+    rootProto.connect_ID  = connectID
     rootProto.message_ID = messageID
     rootProto.message_name = proto.__class__.__name__
     rootProto.server_time = getSystemTime()

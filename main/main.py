@@ -5,10 +5,10 @@ import sys
 sys.path.append('..')
 
 import time
-import GGData
+import GameData
 from proto import cmd_pb2
 import functions
-from Server.MyProtocolFactory import MyServerFactory
+from Server.GameProtocolFactory import GameProtocolFactory
 from twisted.application import internet, service
 
 port = 8160
@@ -16,10 +16,10 @@ port = 8160
 
 def main():
     #初始化公共数据
-    GGData.My_InitGGData()
+    GameData.InitGameData()
 
     from twisted.internet import reactor
-    reactor.listenTCP(port, GGData.My_Factory)
+    reactor.listenTCP(port, GameData.gameFactory)
     print("start!!!")
     reactor.run()
     print("end!!!")

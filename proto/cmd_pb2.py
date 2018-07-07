@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\tcmd.proto\"t\n\nroot_proto\x12\x11\n\tplayer_ID\x18\x01 \x01(\x05\x12\x12\n\nmessage_ID\x18\x02 \x01(\x05\x12\x14\n\x0cmessage_name\x18\x03 \x01(\t\x12\x14\n\x0cmessage_data\x18\x04 \x01(\t\x12\x13\n\x0bserver_time\x18\x05 \x01(\x01\"#\n\x0ereq_login_game\x12\x11\n\tuser_name\x18\x01 \x01(\tb\x06proto3')
+  serialized_pb=_b('\n\tcmd.proto\"u\n\nroot_proto\x12\x12\n\nconnect_ID\x18\x01 \x01(\x05\x12\x12\n\nmessage_ID\x18\x02 \x01(\x05\x12\x14\n\x0cmessage_name\x18\x03 \x01(\t\x12\x14\n\x0cmessage_data\x18\x04 \x01(\t\x12\x13\n\x0bserver_time\x18\x05 \x01(\x01\"+\n\x16req_message_login_game\x12\x11\n\tuser_name\x18\x01 \x01(\t\"\x18\n\x16rep_message_login_gameb\x06proto3')
 )
 
 
@@ -33,7 +33,7 @@ _ROOT_PROTO = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='player_ID', full_name='root_proto.player_ID', index=0,
+      name='connect_ID', full_name='root_proto.connect_ID', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -80,19 +80,19 @@ _ROOT_PROTO = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=13,
-  serialized_end=129,
+  serialized_end=130,
 )
 
 
-_REQ_LOGIN_GAME = _descriptor.Descriptor(
-  name='req_login_game',
-  full_name='req_login_game',
+_REQ_MESSAGE_LOGIN_GAME = _descriptor.Descriptor(
+  name='req_message_login_game',
+  full_name='req_message_login_game',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='user_name', full_name='req_login_game.user_name', index=0,
+      name='user_name', full_name='req_message_login_game.user_name', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -110,12 +110,37 @@ _REQ_LOGIN_GAME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=131,
-  serialized_end=166,
+  serialized_start=132,
+  serialized_end=175,
+)
+
+
+_REP_MESSAGE_LOGIN_GAME = _descriptor.Descriptor(
+  name='rep_message_login_game',
+  full_name='rep_message_login_game',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=177,
+  serialized_end=201,
 )
 
 DESCRIPTOR.message_types_by_name['root_proto'] = _ROOT_PROTO
-DESCRIPTOR.message_types_by_name['req_login_game'] = _REQ_LOGIN_GAME
+DESCRIPTOR.message_types_by_name['req_message_login_game'] = _REQ_MESSAGE_LOGIN_GAME
+DESCRIPTOR.message_types_by_name['rep_message_login_game'] = _REP_MESSAGE_LOGIN_GAME
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 root_proto = _reflection.GeneratedProtocolMessageType('root_proto', (_message.Message,), dict(
@@ -125,12 +150,19 @@ root_proto = _reflection.GeneratedProtocolMessageType('root_proto', (_message.Me
   ))
 _sym_db.RegisterMessage(root_proto)
 
-req_login_game = _reflection.GeneratedProtocolMessageType('req_login_game', (_message.Message,), dict(
-  DESCRIPTOR = _REQ_LOGIN_GAME,
+req_message_login_game = _reflection.GeneratedProtocolMessageType('req_message_login_game', (_message.Message,), dict(
+  DESCRIPTOR = _REQ_MESSAGE_LOGIN_GAME,
   __module__ = 'cmd_pb2'
-  # @@protoc_insertion_point(class_scope:req_login_game)
+  # @@protoc_insertion_point(class_scope:req_message_login_game)
   ))
-_sym_db.RegisterMessage(req_login_game)
+_sym_db.RegisterMessage(req_message_login_game)
+
+rep_message_login_game = _reflection.GeneratedProtocolMessageType('rep_message_login_game', (_message.Message,), dict(
+  DESCRIPTOR = _REP_MESSAGE_LOGIN_GAME,
+  __module__ = 'cmd_pb2'
+  # @@protoc_insertion_point(class_scope:rep_message_login_game)
+  ))
+_sym_db.RegisterMessage(rep_message_login_game)
 
 
 # @@protoc_insertion_point(module_scope)
