@@ -24,7 +24,7 @@ class GameProtocol(Protocol):
             self.curData += data
         if(len(self.curData) < GameData.LENGTH_HEAD):
             return
-        dataLen = functions.charToInt(self.curData[0:4])
+        dataLen = functions.bytesToInt(self.curData[0:4])
         if(dataLen + GameData.LENGTH_HEAD == len(self.curData) ):
             #这是一个完整的数据，交给工厂处理
             self.factory.dataReceived(self, self.curData[4:])

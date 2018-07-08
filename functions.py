@@ -24,17 +24,17 @@ def getSystemTime():
     return time.time() - TIMEOFFSET
 
 #int转化成char
-def intToChar(num):
-    ret = ''
+def intToBytes(num):
+    array = []
     for i in range(3, -1, -1):
         tmpInt = ((255 << (8 * i))) & num
-        ret = ret + chr(tmpInt)
-    return ret
+        array.append(tmpInt)
+    return bytes(array)
 #char转化成int
-def charToInt(str):
+def bytesToInt(str):
     ret = 0
     for i in range(0, 4, 1):
-        ret = (ret << 8) | ord(str[i])
+        ret = (ret << 8) | str[i]
     return ret
 #封装协议
 def serialization(proto, connectID = 0, messageID = 0):
@@ -51,5 +51,5 @@ def serialization(proto, connectID = 0, messageID = 0):
     #序列化包装后的协议
     tmpStr = rootProto.SerializeToString()
     tmpLen = len(tmpStr)
-    tmpStr = intToChar(tmpLen) + tmpStr
+    tmpStr = intToBytes(tmpLen) + tmpStr
     return tmpStr

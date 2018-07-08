@@ -30,7 +30,7 @@ class GameProtocolFactory(ServerFactory):
         rootProto.ParseFromString(data)
         rootProto.connect_ID = linkProto.connectID
         #交给服务类处理
-        GameData.gameFactory.requestServer(linkProto, rootProto)
+        GameData.gameServer.requestServer(linkProto, rootProto)
 
     #返回数据给客户端
     def returnData(self, linkProto, messageID, proto):

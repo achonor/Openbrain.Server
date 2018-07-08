@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\tcmd.proto\"u\n\nroot_proto\x12\x12\n\nconnect_ID\x18\x01 \x01(\x05\x12\x12\n\nmessage_ID\x18\x02 \x01(\x05\x12\x14\n\x0cmessage_name\x18\x03 \x01(\t\x12\x14\n\x0cmessage_data\x18\x04 \x01(\t\x12\x13\n\x0bserver_time\x18\x05 \x01(\x01\"+\n\x16req_message_login_game\x12\x11\n\tuser_name\x18\x01 \x01(\t\"\x18\n\x16rep_message_login_gameb\x06proto3')
+  serialized_pb=_b('\n\tcmd.proto\"u\n\nroot_proto\x12\x12\n\nconnect_ID\x18\x01 \x01(\x05\x12\x12\n\nmessage_ID\x18\x02 \x01(\x05\x12\x14\n\x0cmessage_name\x18\x03 \x01(\t\x12\x14\n\x0cmessage_data\x18\x04 \x01(\x0c\x12\x13\n\x0bserver_time\x18\x05 \x01(\x01\"+\n\x16req_message_login_game\x12\x11\n\tuser_name\x18\x01 \x01(\t\":\n\x16rep_message_login_game\x12\x0c\n\x04isOK\x18\x01 \x01(\x08\x12\x12\n\ntestString\x18\x02 \x01(\tb\x06proto3')
 )
 
 
@@ -55,8 +55,8 @@ _ROOT_PROTO = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='message_data', full_name='root_proto.message_data', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      number=4, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -122,6 +122,20 @@ _REP_MESSAGE_LOGIN_GAME = _descriptor.Descriptor(
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
+    _descriptor.FieldDescriptor(
+      name='isOK', full_name='rep_message_login_game.isOK', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='testString', full_name='rep_message_login_game.testString', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -135,7 +149,7 @@ _REP_MESSAGE_LOGIN_GAME = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=177,
-  serialized_end=201,
+  serialized_end=235,
 )
 
 DESCRIPTOR.message_types_by_name['root_proto'] = _ROOT_PROTO

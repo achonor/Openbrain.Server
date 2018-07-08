@@ -16,14 +16,12 @@ class GameServer(object):
 
     def readProto(func):
         @functools.wraps(func)
-        def wrapper(self, cPlayer, className, requestProto):
+        def wrapper(self, linkProto, className, requestProto):
             proto = className()
-            proto.ParseFromString(requestProto.messageData.encode('utf-8'))
-            # 打印协议内容
-            print('playerID: ', requestProto.playerID)
+            proto.ParseFromString(requestProto.message_data)
             print ('MessageName: ', proto.__class__)
             print (proto)
-            return func(self, cPlayer, proto)
+            return func(self, linkProto, proto)
         return wrapper
 
     #处理请求协议
@@ -31,22 +29,24 @@ class GameServer(object):
 
         className = None
         requestFunc = None
-        messageName = requestProto.messageName
+        messageName = requestProto.message_name
         if ('req_message_login_game' == messageName):
-            className = cmd_pb2.rep_message_login_game
+            className = cmd_pb2.req_message_login_game
             requestFunc= self.requestLogin
-        if(None == requestFunc):
+        if(None == 1):
             return
 
         #处理数据
         rProto = requestFunc(linkProto, className, requestProto)
         #发送数据
-        GameData.gameFactory.returnData(linkProto, requestProto.messageID, rProto)
+        GameData.gameFactory.returnData(linkProto, requestProto.message_ID, rProto)
 
     #登陆请求
     @readProto
     def requestLogin(self, linkProto, proto):
-        rProto = cmd_pb2.MessageLoginRsp()
+        rProto = cmd_pb2.rep_message_login_game()
+        rProto.isOK = True
+        rProto.testString = "李林聪 lala啦"
         return rProto
 
     #获取玩家
