@@ -46,7 +46,6 @@ class GameServer(object):
     def requestLogin(self, linkProto, proto):
         rProto = cmd_pb2.rep_message_login_game()
         rProto.isOK = True
-        rProto.testString = "李林聪 lala啦"
         return rProto
 
     #获取玩家
