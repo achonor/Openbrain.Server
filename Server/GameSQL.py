@@ -36,11 +36,11 @@ class GameSQL(object):
         return ret
 
     @linkMySql
-    def SelectBySqlFile(self, order, db, cursor):
+    def SelectBySqlFile(self, order, db, cursor, param):
         filePath = os.path.join("../sql/select", order + ".sql")
         with open(filePath, 'r') as file:
             #print(file.read())
-            cursor.execute(file.read())
+            cursor.execute(file.read(), param)
             # 提交到数据库执行
             db.commit()
             #获取数据

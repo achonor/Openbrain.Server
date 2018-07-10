@@ -6,13 +6,13 @@
 import GameData
 import functools
 import functions
-from Server import GamePlayer
+from Server.GamePlayer import GamePlayer
 from proto import cmd_pb2
 
 class GameServer(object):
     def __init__(self):
         #玩家列表
-        self.__playerDict = []
+        self.__playerDict = {}
 
     def readProto(func):
         @functools.wraps(func)
@@ -45,13 +45,17 @@ class GameServer(object):
     @readProto
     def requestLogin(self, linkProto, proto):
         rProto = cmd_pb2.rep_message_login_game()
-        rProto.isOK = True
+        #创建Player
+        player = GamePlayer.CreatePlayer(linkProto, proto.user_ID, proto.user_name)
+        #玩家信息
+        player.SetPlayerInfoToProto(rProto.player_info)
+        #保存一下
+        self.addPlayer(player)
         return rProto
 
     #获取玩家
-    def getPlayer(self, linkProto):
-        return self.__playerDict.get(linkProto)
+    def getPlayer(self, userID):
+        return self.__playerDict.get(userID)
     #添加玩家
-    def addPlayer(self, linkProto):
-        cPlayer = GamePlayer.Player(linkProto)
-        self.__playerDict[linkProto] = cPlayer
+    def addPlayer(self, cPlayer):
+        self.__playerDict[cPlayer.userID] = cPlayer

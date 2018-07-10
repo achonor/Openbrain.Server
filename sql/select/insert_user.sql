@@ -1,1 +1,1 @@
-INSERT INTO user (name) VALUES (%s)
+INSERT INTO user (ID, Name) VALUES (%s, %s)

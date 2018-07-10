@@ -1,1 +1,1 @@
-UPDATE user SET name=%s WHERE id=%s
+UPDATE user SET name=%s WHERE ID=%s
