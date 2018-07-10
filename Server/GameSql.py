@@ -54,3 +54,11 @@ class GameSQL(object):
             cursor.execute(file.read(), param)
             # 提交到数据库执行
             db.commit()
+
+    @linkMySql
+    def UpdateBySqlFile(self, order, db, cursor, param):
+        filePath = os.path.join("../sql/select", order + ".sql")
+        with open(filePath, 'r') as file:
+            cursor.execute(file.read(), param)
+            # 提交到数据库执行
+            db.commit()
