@@ -1,0 +1,1 @@
+UPDATE user SET Name=%s, UserIcon=%s, Energy=%s, Gems=%s, Level=%s, Proficiency=%s WHERE ID=%s

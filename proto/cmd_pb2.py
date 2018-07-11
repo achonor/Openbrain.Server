@@ -3,6 +3,7 @@
 
 import sys
 _b=sys.version_info[0]<3 and (lambda x:x) or (lambda x:x.encode('latin1'))
+from google.protobuf.internal import enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
@@ -19,9 +20,109 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\tcmd.proto\"u\n\nroot_proto\x12\x12\n\nconnect_ID\x18\x01 \x01(\x05\x12\x12\n\nmessage_ID\x18\x02 \x01(\x05\x12\x14\n\x0cmessage_name\x18\x03 \x01(\t\x12\x14\n\x0cmessage_data\x18\x04 \x01(\x0c\x12\x13\n\x0bserver_time\x18\x05 \x01(\x01\"K\n\x12struct_player_info\x12\x0f\n\x07user_ID\x18\x01 \x01(\t\x12\x11\n\tuser_name\x18\x02 \x01(\t\x12\x11\n\tuser_icon\x18\x03 \x01(\t\"<\n\x16req_message_login_game\x12\x0f\n\x07user_ID\x18\x01 \x01(\t\x12\x11\n\tuser_name\x18\x02 \x01(\t\"P\n\x16rep_message_login_game\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\x12(\n\x0bplayer_info\x18\x02 \x01(\x0b\x32\x13.struct_player_info\"C\n\x17rep_message_player_info\x12(\n\x0bplayer_info\x18\x01 \x01(\x0b\x32\x13.struct_player_infob\x06proto3')
+  serialized_pb=_b('\n\tcmd.proto\"u\n\nroot_proto\x12\x12\n\nconnect_ID\x18\x01 \x01(\x05\x12\x12\n\nmessage_ID\x18\x02 \x01(\x05\x12\x14\n\x0cmessage_name\x18\x03 \x01(\t\x12\x14\n\x0cmessage_data\x18\x04 \x01(\x0c\x12\x13\n\x0bserver_time\x18\x05 \x01(\x01\"\xaa\x01\n\x12struct_player_info\x12\x11\n\tuser_name\x18\x01 \x01(\t\x12\x11\n\tuser_icon\x18\x02 \x01(\t\x12\x0e\n\x06\x65nergy\x18\x03 \x01(\x05\x12\x0c\n\x04gems\x18\x04 \x01(\x05\x12!\n\x05level\x18\x05 \x01(\x0e\x32\x12.enum_player_level\x12-\n\x0bproficiency\x18\x06 \x01(\x0e\x32\x18.enum_player_proficiency\"O\n\x16req_message_login_game\x12\x0f\n\x07user_ID\x18\x01 \x01(\t\x12\x11\n\tuser_name\x18\x02 \x01(\t\x12\x11\n\tuser_icon\x18\x03 \x01(\t\"P\n\x16rep_message_login_game\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\x12(\n\x0bplayer_info\x18\x02 \x01(\x0b\x32\x13.struct_player_info\"C\n\x17rep_message_player_info\x12(\n\x0bplayer_info\x18\x01 \x01(\x0b\x32\x13.struct_player_info*P\n\x11\x65num_player_level\x12\n\n\x06\x43OPPER\x10\x00\x12\n\n\x06SILVER\x10\x01\x12\x08\n\x04GOLD\x10\x03\x12\x0c\n\x08PLATINUM\x10\x04\x12\x0b\n\x07\x44IAMOND\x10\x05*v\n\x17\x65num_player_proficiency\x12\x07\n\x03TOE\x10\x00\x12\x08\n\x04\x43\x41LF\x10\x01\x12\x08\n\x04KNEE\x10\x02\x12\t\n\x05THIGH\x10\x03\x12\x08\n\x04\x42UTT\x10\x04\x12\t\n\x05\x42\x45LLY\x10\x05\x12\t\n\x05\x43HEST\x10\x06\x12\x08\n\x04NECK\x10\x07\x12\t\n\x05\x42RAIN\x10\x08\x62\x06proto3')
 )
 
+_ENUM_PLAYER_LEVEL = _descriptor.EnumDescriptor(
+  name='enum_player_level',
+  full_name='enum_player_level',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='COPPER', index=0, number=0,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='SILVER', index=1, number=1,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='GOLD', index=2, number=3,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='PLATINUM', index=3, number=4,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='DIAMOND', index=4, number=5,
+      serialized_options=None,
+      type=None),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=537,
+  serialized_end=617,
+)
+_sym_db.RegisterEnumDescriptor(_ENUM_PLAYER_LEVEL)
+
+enum_player_level = enum_type_wrapper.EnumTypeWrapper(_ENUM_PLAYER_LEVEL)
+_ENUM_PLAYER_PROFICIENCY = _descriptor.EnumDescriptor(
+  name='enum_player_proficiency',
+  full_name='enum_player_proficiency',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='TOE', index=0, number=0,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='CALF', index=1, number=1,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='KNEE', index=2, number=2,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='THIGH', index=3, number=3,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='BUTT', index=4, number=4,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='BELLY', index=5, number=5,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='CHEST', index=6, number=6,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='NECK', index=7, number=7,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='BRAIN', index=8, number=8,
+      serialized_options=None,
+      type=None),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=619,
+  serialized_end=737,
+)
+_sym_db.RegisterEnumDescriptor(_ENUM_PLAYER_PROFICIENCY)
+
+enum_player_proficiency = enum_type_wrapper.EnumTypeWrapper(_ENUM_PLAYER_PROFICIENCY)
+COPPER = 0
+SILVER = 1
+GOLD = 3
+PLATINUM = 4
+DIAMOND = 5
+TOE = 0
+CALF = 1
+KNEE = 2
+THIGH = 3
+BUTT = 4
+BELLY = 5
+CHEST = 6
+NECK = 7
+BRAIN = 8
 
 
 
@@ -92,23 +193,44 @@ _STRUCT_PLAYER_INFO = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='user_ID', full_name='struct_player_info.user_ID', index=0,
+      name='user_name', full_name='struct_player_info.user_name', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='user_name', full_name='struct_player_info.user_name', index=1,
+      name='user_icon', full_name='struct_player_info.user_icon', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='user_icon', full_name='struct_player_info.user_icon', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      name='energy', full_name='struct_player_info.energy', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='gems', full_name='struct_player_info.gems', index=3,
+      number=4, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='level', full_name='struct_player_info.level', index=4,
+      number=5, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='proficiency', full_name='struct_player_info.proficiency', index=5,
+      number=6, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -124,8 +246,8 @@ _STRUCT_PLAYER_INFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=132,
-  serialized_end=207,
+  serialized_start=133,
+  serialized_end=303,
 )
 
 
@@ -150,6 +272,13 @@ _REQ_MESSAGE_LOGIN_GAME = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='user_icon', full_name='req_message_login_game.user_icon', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -162,8 +291,8 @@ _REQ_MESSAGE_LOGIN_GAME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=209,
-  serialized_end=269,
+  serialized_start=305,
+  serialized_end=384,
 )
 
 
@@ -200,8 +329,8 @@ _REP_MESSAGE_LOGIN_GAME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=271,
-  serialized_end=351,
+  serialized_start=386,
+  serialized_end=466,
 )
 
 
@@ -231,10 +360,12 @@ _REP_MESSAGE_PLAYER_INFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=353,
-  serialized_end=420,
+  serialized_start=468,
+  serialized_end=535,
 )
 
+_STRUCT_PLAYER_INFO.fields_by_name['level'].enum_type = _ENUM_PLAYER_LEVEL
+_STRUCT_PLAYER_INFO.fields_by_name['proficiency'].enum_type = _ENUM_PLAYER_PROFICIENCY
 _REP_MESSAGE_LOGIN_GAME.fields_by_name['player_info'].message_type = _STRUCT_PLAYER_INFO
 _REP_MESSAGE_PLAYER_INFO.fields_by_name['player_info'].message_type = _STRUCT_PLAYER_INFO
 DESCRIPTOR.message_types_by_name['root_proto'] = _ROOT_PROTO
@@ -242,6 +373,8 @@ DESCRIPTOR.message_types_by_name['struct_player_info'] = _STRUCT_PLAYER_INFO
 DESCRIPTOR.message_types_by_name['req_message_login_game'] = _REQ_MESSAGE_LOGIN_GAME
 DESCRIPTOR.message_types_by_name['rep_message_login_game'] = _REP_MESSAGE_LOGIN_GAME
 DESCRIPTOR.message_types_by_name['rep_message_player_info'] = _REP_MESSAGE_PLAYER_INFO
+DESCRIPTOR.enum_types_by_name['enum_player_level'] = _ENUM_PLAYER_LEVEL
+DESCRIPTOR.enum_types_by_name['enum_player_proficiency'] = _ENUM_PLAYER_PROFICIENCY
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 root_proto = _reflection.GeneratedProtocolMessageType('root_proto', (_message.Message,), dict(

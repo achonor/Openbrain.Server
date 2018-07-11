@@ -46,7 +46,7 @@ class GameServer(object):
     def requestLogin(self, linkProto, proto):
         rProto = cmd_pb2.rep_message_login_game()
         #创建Player
-        player = GamePlayer.CreatePlayer(linkProto, proto.user_ID, proto.user_name)
+        player = GamePlayer.CreatePlayer(linkProto, proto.user_ID, proto.user_name, proto.user_icon)
         #玩家信息
         player.SetPlayerInfoToProto(rProto.player_info)
         #保存一下
