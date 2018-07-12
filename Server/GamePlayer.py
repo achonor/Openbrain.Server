@@ -33,16 +33,16 @@ class GamePlayer(object):
         self.level = 1
         self.proficiency = 1
         #写入user表
-        GameData.gameSQl.InsertBySqlFile("insert_user", [self.userID, self.userName, self.userIcon, self.energy, self.gems, self.level, self.proficiency])
+        GameData.gameSQL.InsertBySqlFile("insert_user", [self.userID, self.userName, self.userIcon, self.energy, self.gems, self.level, self.proficiency])
 
         pass
     @staticmethod
     def CreatePlayer(linkProto, userID, userName, userIcon):
         player = None
         #查询数据库是否有用户
-        ret = GameData.gameSQl.SelectBySqlFile("select_user", [userID])
+        ret = GameData.gameSQL.SelectBySqlFile("select_user", [userID])
         if (0 < len(ret)):
-            GameData.gameSQl.UpdateBySqlFile("update_user_name_icon_by_id", [userName, userIcon, userID])
+            GameData.gameSQL.UpdateBySqlFile("update_user_name_icon_by_id", [userName, userIcon, userID])
             player = GamePlayer(linkProto, userID, userName, userIcon)
         else:
             player = GamePlayer(linkProto, userID, userName, userIcon)
@@ -72,11 +72,11 @@ class GamePlayer(object):
     #提交玩家数据到数据库
     def UpdateToDB(self):
         #写入user表
-        GameData.gameSQl.UpdateBySqlFile("update_user_all_by_id", [self.userName, self.userIcon, self.energy, self.gems, self.level, self.proficiency, self.userID])
+        GameData.gameSQL.UpdateBySqlFile("update_user_all_by_id", [self.userName, self.userIcon, self.energy, self.gems, self.level, self.proficiency, self.userID])
 
     #同步数据库数据
     def UpdateFromDB(self):
-        ret = GameData.gameSQl.SelectBySqlFile("select_user", [self.userID])
+        ret = GameData.gameSQL.SelectBySqlFile("select_user", [self.userID])
         self.userName = ret[0][1]
         self.userIcon = ret[0][2]
         self.energy = ret[0][3]

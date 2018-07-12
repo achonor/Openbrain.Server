@@ -6,7 +6,6 @@ import functions
 from Server.GameServer import GameServer
 from Server.GameSQL import GameSQL
 from Server.GameProtocolFactory import GameProtocolFactory
-
 #包头长度
 global LENGTH_HEAD
 LENGTH_HEAD = 4
@@ -16,12 +15,12 @@ global gameFactory
 #全局服务类
 global gameServer
 #全局数据库
-global gameSQl
+global gameSQL
 
 def InitGameData():
     global gameFactory
     global gameServer
-    global gameSQl
+    global gameSQL
 
     gameFactory = GameProtocolFactory()
     gameServer = GameServer()

@@ -11,7 +11,7 @@
  Target Server Version : 80011
  File Encoding         : 65001
 
- Date: 10/07/2018 23:42:04
+ Date: 13/07/2018 01:03:55
 */
 
 SET NAMES utf8mb4;
@@ -25,6 +25,10 @@ CREATE TABLE `user`  (
   `ID` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
   `UserIcon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
+  `Energy` int(11) NOT NULL,
+  `Gems` int(11) NOT NULL,
+  `Level` int(11) NOT NULL,
+  `Proficiency` int(11) NOT NULL,
   PRIMARY KEY (`ID`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
