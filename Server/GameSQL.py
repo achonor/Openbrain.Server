@@ -62,3 +62,22 @@ class GameSQL(object):
             cursor.execute(file.read(), param)
             # 提交到数据库执行
             db.commit()
+
+
+
+from twisted.enterprise import adbapi
+
+class _GameSQL(object):
+    def __init__(self):
+        self.dbpool = adbapi.ConnectionPool("MySQLdb", db='openbrain', user='root', passwd='Lull0618',
+                                       host='127.0.0.1', use_unicode=True, charset='utf8')
+
+    def QueryBySqlFile(self, order, param, callback):
+        filePath = os.path.join("../sql/select", order + ".sql")
+        with open(filePath, 'r') as file:
+            deff = self.dbpool.runQuery(file.read(), param)
+            deff.addCallback(callback)
+            deff.addErrback(self.onError)
+
+    def onError(self, error):
+        print("_GameSQL.QueryBySqlFile ", error)
