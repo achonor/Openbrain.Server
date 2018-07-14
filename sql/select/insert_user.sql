@@ -1,1 +1,1 @@
-INSERT INTO user (ID, Name, UserIcon, Energy, Gems, Level, Proficiency) VALUES (%s, %s, %s, %s, %s, %s, %s)
+INSERT INTO user (ID, Name, UserIcon, Energy, Gems, Level, Proficiency, Speed, Judgment, Calculate, Accuracy, Observation, Memory) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
