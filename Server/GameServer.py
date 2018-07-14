@@ -13,15 +13,17 @@ class GameServer(object):
     def __init__(self):
         #玩家列表
         self.__playerDict = {}
+        #connectID和userID的字典
+        self.__connectIDToUserID = {}
 
     def readProto(func):
         @functools.wraps(func)
-        def wrapper(self, linkProto, className, requestProto):
+        def wrapper(self, linkProto, className, requestProto, callback):
             proto = className()
             proto.ParseFromString(requestProto.message_data)
             print ('MessageName: ', proto.__class__)
             print (proto)
-            return func(self, linkProto, proto)
+            return func(self, linkProto, proto, callback)
         return wrapper
 
     #处理请求协议
@@ -35,23 +37,23 @@ class GameServer(object):
             requestFunc= self.requestLogin
         if(None == 1):
             return
-
+        def _sendData(rProto):
+            #发送数据
+            GameData.gameFactory.returnData(linkProto, requestProto.message_ID, rProto)
         #处理数据
-        rProto = requestFunc(linkProto, className, requestProto)
-        #发送数据
-        GameData.gameFactory.returnData(linkProto, requestProto.message_ID, rProto)
-
+        requestFunc(linkProto, className, requestProto, _sendData)
     #登陆请求
     @readProto
-    def requestLogin(self, linkProto, proto):
-        rProto = cmd_pb2.rep_message_login_game()
+    def requestLogin(self, linkProto, proto, callback):
+        def _requestLogin(player):
+            rProto = cmd_pb2.rep_message_login_game()
+            #玩家信息
+            player.SetPlayerInfoToProto(rProto.player_info)
+            #保存一下
+            self.addPlayer(player)
+            callback(rProto)
         #创建Player
-        player = GamePlayer.CreatePlayer(linkProto, proto.user_ID, proto.user_name, proto.user_icon)
-        #玩家信息
-        player.SetPlayerInfoToProto(rProto.player_info)
-        #保存一下
-        self.addPlayer(player)
-        return rProto
+        GamePlayer.CreatePlayer(linkProto, proto.user_ID, proto.user_name, proto.user_icon, _requestLogin)
 
     #获取玩家
     def getPlayer(self, userID):
@@ -59,3 +61,8 @@ class GameServer(object):
     #添加玩家
     def addPlayer(self, cPlayer):
         self.__playerDict[cPlayer.userID] = cPlayer
+        self.__connectIDToUserID[cPlayer.linkProto.connectID] = cPlayer.userID
+    def removePlayer(self, connectID):
+        userID  = self.__connectIDToUserID[connectID]
+        self.__connectIDToUserID.pop(connectID)
+        self.__playerDict.pop(userID)

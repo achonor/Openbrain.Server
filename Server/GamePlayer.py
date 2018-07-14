@@ -5,7 +5,6 @@
 import GameData
 from proto import cmd_pb2
 
-
 '''玩家的信息'''
 
 class GamePlayer(object):
@@ -32,27 +31,36 @@ class GamePlayer(object):
         self.gems = 0
         self.level = 1
         self.proficiency = 1
-        #写入user表
-        GameData.gameSQL.InsertBySqlFile("insert_user", [self.userID, self.userName, self.userIcon, self.energy, self.gems, self.level, self.proficiency])
 
         pass
     @staticmethod
-    def CreatePlayer(linkProto, userID, userName, userIcon):
-        player = None
+    def CreatePlayer(linkProto, userID, userName, userIcon, callback):
         #查询数据库是否有用户
-        ret = GameData.gameSQL.SelectBySqlFile("select_user", [userID])
-        if (0 < len(ret)):
-            GameData.gameSQL.UpdateBySqlFile("update_user_name_icon_by_id", [userName, userIcon, userID])
-            player = GamePlayer(linkProto, userID, userName, userIcon)
-        else:
-            player = GamePlayer(linkProto, userID, userName, userIcon)
-            player.InitPlayer()
-        #从数据库获取玩家数据
-        player.UpdateFromDB()
-        #同步一次玩家数据
-        if (None != player):
+        def _CreatePlayer(cursor, param):
+            # 查数据库，是否是第一次登陆
+            GameData.gameSQL.QueryBySqlFile(cursor, "select_user", [userID])
+            player = None
+            ret = cursor.fetchall()
+            if (None != ret and 0 < len(ret)):
+                GameData.gameSQL.QueryBySqlFile(cursor, "update_user_name_icon_by_id", [userName, userIcon, userID])
+                player = GamePlayer(linkProto, userID, userName, userIcon)
+            else:
+                player = GamePlayer(linkProto, userID, userName, userIcon)
+                player.InitPlayer()
+                # 写入user表
+                GameData.gameSQL.QueryBySqlFile(cursor, "insert_user", [player.userID, player.userName, player.userIcon,
+                                                                player.energy, player.gems,  player.level, player.proficiency])
+
+            # 从数据库获取玩家数据
+            GameData.gameSQL.QueryBySqlFile(cursor, "select_user", [userID])
+            ret = cursor.fetchall()
+            player.UpdatePlayerDataByDBResult(ret)
+            # 同步一次玩家数据
             player.SendPlayerInfo()
-        return player
+            return player
+        GameData.gameSQL.QueryByInteraction(_CreatePlayer, None, callback)
+
+
 
     def SendPlayerInfo(self):
         rProto = cmd_pb2.rep_message_player_info()
@@ -72,17 +80,22 @@ class GamePlayer(object):
     #提交玩家数据到数据库
     def UpdateToDB(self):
         #写入user表
-        GameData.gameSQL.UpdateBySqlFile("update_user_all_by_id", [self.userName, self.userIcon, self.energy, self.gems, self.level, self.proficiency, self.userID])
+        GameData.gameSQL.UpdateBySqlFile("update_user_all_by_id",
+                                         [self.userName, self.userIcon, self.energy,
+                                          self.gems, self.level, self.proficiency, self.userID])
 
     #同步数据库数据
-    def UpdateFromDB(self):
-        ret = GameData.gameSQL.SelectBySqlFile("select_user", [self.userID])
+    def UpdatePlayerDataByDBResult(self, ret):
         self.userName = ret[0][1]
         self.userIcon = ret[0][2]
         self.energy = ret[0][3]
         self.gems = ret[0][4]
         self.level = ret[0][5]
         self.proficiency = ret[0][6]
+
+    def __del__(self):
+        self.level = 2
+        self.UpdateToDB();
 
     @property
     def linkProto(self):

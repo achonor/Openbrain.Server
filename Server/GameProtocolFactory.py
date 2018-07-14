@@ -47,4 +47,4 @@ class GameProtocolFactory(ServerFactory):
         #移除连接
         self.protoList.pop(connectID)
         #移除玩家
-        #GameData.gameServer.removePlayer(connectID)
+        GameData.gameServer.removePlayer(connectID)
