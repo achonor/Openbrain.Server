@@ -63,6 +63,9 @@ class GameServer(object):
         self.__playerDict[cPlayer.userID] = cPlayer
         self.__connectIDToUserID[cPlayer.linkProto.connectID] = cPlayer.userID
     def removePlayer(self, connectID):
-        userID  = self.__connectIDToUserID[connectID]
+        userID  = self.__connectIDToUserID.get(connectID)
+        if (None == userID):
+            #还未登陆
+            return
         self.__connectIDToUserID.pop(connectID)
         self.__playerDict.pop(userID)
