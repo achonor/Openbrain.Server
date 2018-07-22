@@ -45,6 +45,10 @@ class GameServer(object):
             className = cmd_pb2.req_message_start_match
             requestFunc = self.requestMatch
             requestPlayer = self.getPlayerByLink(linkProto)
+        elif ("req_message_start_ready" == messageName):
+            className = cmd_pb2.req_message_start_ready
+            requestFunc = self.requestReady
+            requestPlayer = self.getPlayerByLink(linkProto)
         if(None == requestFunc):
             print(TAG, "Error", "not found handle function")
             return
@@ -73,6 +77,11 @@ class GameServer(object):
         rProto = cmd_pb2.rep_message_start_match()
         callback(rProto)
 
+    #游戏准备请求
+    @readProto
+    def requestReady(self, player, linkProto, proto, callback):
+        rProto = cmd_pb2.rep_message_start_ready()
+        callback(rProto)
 
     #推送玩家信息
     def sendPlayerInfo(self, player):
