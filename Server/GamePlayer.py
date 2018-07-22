@@ -37,6 +37,10 @@ class GamePlayer(object):
         self.observation = 0
         #记忆力
         self.memory = 0
+        #排名
+        self.ranking = 0
+        #分数
+        self.grade = 0
     #玩家注册初始化
     def InitPlayer(self):
         self.energy = 15
@@ -49,6 +53,8 @@ class GamePlayer(object):
         self.accuracy = 10
         self.observation = 10
         self.memory = 10
+        self.ranking = 2147489647
+        self.grade = 10
 
     @staticmethod
     def CreatePlayer(linkProto, userID, userName, userIcon, callback):
@@ -68,25 +74,18 @@ class GamePlayer(object):
                 # 写入user表
                 GameData.gameSQL.QueryBySqlFile(cursor, "insert_user", [player.userID, player.userName, player.userIcon,
                                                                         player.energy, player.gems,  player.level, player.proficiency,
-                                                                        player.speed, player.judgment, player.calculate, player.accuracy, player.observation, player.memory])
+                                                                        player.speed, player.judgment, player.calculate, player.accuracy,
+                                                                        player.observation, player.memory, player.ranking, player.grade])
 
             # 从数据库获取玩家数据
             GameData.gameSQL.QueryBySqlFile(cursor, "select_user", [userID])
             ret = cursor.fetchall()
             player.UpdatePlayerDataByDBResult(ret)
             # 同步一次玩家数据
-            #player.SendPlayerInfo()
+            #GameData.gameServer.sendPlayerInfo(player)
             return player
         GameData.gameSQL.QueryByInteraction(_CreatePlayer, None, callback)
 
-
-
-    def SendPlayerInfo(self):
-        rProto = cmd_pb2.rep_message_player_info()
-        #设置玩家信息
-        self.SetPlayerInfoToProto(rProto.player_info)
-        #推送协议
-        GameData.gameFactory.returnData(self.linkProto, 0, rProto)
 
     def SetPlayerInfoToProto(self, proto):
         proto.user_name = self.userName
@@ -101,13 +100,15 @@ class GamePlayer(object):
         proto.accuracy = self.accuracy
         proto.observation = self.observation
         proto.memory = self.memory
+        proto.ranking = self.ranking
+        proto.grade = self.grade
 
     #提交玩家数据到数据库
     def UpdateToDB(self):
         #写入user表
         GameData.gameSQL.UpdateBySqlFile("update_user_all_by_id",
-                                         [self.userName, self.userIcon, self.energy, self.gems, self.level, self.proficiency, self.userID,
-                                          self.speed, self.judgment, self.calculate, self.accuracy, self.observation, self.memory])
+                                         [self.userName, self.userIcon, self.energy, self.gems, self.level, self.proficiency,
+                                          self.speed, self.judgment, self.calculate, self.accuracy, self.observation, self.memory, self.ranking, self.grade, self.userID])
 
     #同步数据库数据
     def UpdatePlayerDataByDBResult(self, ret):
@@ -123,10 +124,11 @@ class GamePlayer(object):
         self.accuracy = ret[0][10]
         self.observation = ret[0][11]
         self.memory = ret[0][12]
+        self.ranking = ret[0][13]
+        self.grade = ret[0][14]
 
     def __del__(self):
-        self.level = 2
-        self.UpdateToDB();
+        self.UpdateToDB()
 
     @property
     def linkProto(self):
