@@ -108,12 +108,12 @@ class GameServer(object):
             if (None == innings):
                 raise GameException(cmd_pb2.ERROR_CODE.GAME_NOT_START)
             #获取对手
-            opponent = referee.getOpponent()
+            opponent = referee.getOpponent(player)
             #设置返回信息
             rProto.innings = referee.innings_idx
             rProto.start_time = innings.start_time
             opponent.SetPlayerInfoToProto(rProto.player_info)
-            rProto.rand_play = innings.rand_play
+            functions.listToRepeated(innings.rand_play, rProto.rand_play)
             rProto.play = innings.play
         except GameException as e:
             rProto.isOK = e.error_code
@@ -144,9 +144,8 @@ class GameServer(object):
             #获取裁判
             referee = self.__refereeDict.get(player)
             rProto.grade = referee.updateGrade(proto.innings, proto.add_value)
-
             #获取对手
-            opponent = referee.getOpponent()
+            opponent = referee.getOpponent(player)
             #给玩家对手推送分数
             tmpProto = cmd_pb2.rep_message_updata_opponent_grade()
             tmpProto.grade = rProto.grade
@@ -171,7 +170,7 @@ class GameServer(object):
         #推送协议
         GameData.gameFactory.returnData(player.linkProto, 0, rProto)
         #添加裁判
-        if (None == self.__refereeDict.get(player) and None == self.__refereeDict.get(otherPlayer)):
+        if (True or None == self.__refereeDict.get(player) and None == self.__refereeDict.get(otherPlayer)):
             referee = GameReferee(player, otherPlayer)
             self.__refereeDict[player] = referee
             self.__refereeDict[otherPlayer] = referee
@@ -182,7 +181,7 @@ class GameServer(object):
         return self.__playerDict.get(userID)
 
     def getPlayerByLink(self, linkProto):
-        userID = self.__connectIDToUserID[linkProto.connectID]
+        userID = self.__connectIDToUserID.get(linkProto.connectID)
         if (None != userID):
             return self.__playerDict[userID]
         return None

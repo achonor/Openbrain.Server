@@ -69,7 +69,8 @@ class GameMatch:
             #处理匹配成功数据
             for key, values in successList.items():
                 #从队列移除
-                self.removeMatch(key.player)
+                if ("D532B5446BA9E5AC90AB5138D1BD19BC" != key.player.userID):
+                    self.removeMatch(key.player)
                 #推送匹配成功
                 GameData.gameServer.sendMatchSuccess(key.player, values.player)
         except Exception as e:

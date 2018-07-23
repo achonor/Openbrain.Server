@@ -53,3 +53,7 @@ def serialization(proto, connectID = 0, messageID = 0):
     tmpLen = len(tmpStr)
     tmpStr = intToBytes(tmpLen) + tmpStr
     return tmpStr
+
+def listToRepeated(src_list, des_repeate):
+    for var in src_list:
+        des_repeate.append(var)

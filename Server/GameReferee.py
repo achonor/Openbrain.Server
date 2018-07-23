@@ -69,7 +69,7 @@ class GameReferee:
             self.innings_list.append(InningsData(self.players[0], self.players[1]))
             #等待游戏结束
             wait_end = Deferred()
-            reactor.callLater(READY_STAY_TIME + ONE_INNINGS_TIME, wait_end.callback)
+            reactor.callLater(READY_STAY_TIME + ONE_INNINGS_TIME, wait_end.callback, 1)
             yield wait_end
             #推送本局游戏结束
 
@@ -83,7 +83,7 @@ class GameReferee:
 
     #获取当前局
     def getCurInnings(self):
-        return self.innings_list[self.innings_idx]
+        return self.innings_list[self.innings_idx - 1]
 
     #获取对手
     def getOpponent(self, player):
