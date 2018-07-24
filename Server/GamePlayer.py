@@ -53,7 +53,7 @@ class GamePlayer(object):
         self.accuracy = 10
         self.observation = 10
         self.memory = 10
-        self.ranking = 2147489647
+        self.ranking = 2147483647
         self.grade = 10
 
     @staticmethod
