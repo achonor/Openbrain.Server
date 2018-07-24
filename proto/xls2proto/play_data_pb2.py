@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x19xls2proto/play_data.proto\"3\n\tplay_data\x12\n\n\x02id\x18\x01 \x01(\r\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0c\n\x04icon\x18\x03 \x01(\t\",\n\x0fplay_data_ARRAY\x12\x19\n\x05items\x18\x01 \x03(\x0b\x32\n.play_datab\x06proto3')
+  serialized_pb=_b('\n\x19xls2proto/play_data.proto\"A\n\tplay_data\x12\n\n\x02id\x18\x01 \x01(\r\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0c\n\x04icon\x18\x03 \x01(\t\x12\x0c\n\x04time\x18\x04 \x01(\r\",\n\x0fplay_data_ARRAY\x12\x19\n\x05items\x18\x01 \x03(\x0b\x32\n.play_datab\x06proto3')
 )
 
 
@@ -53,6 +53,13 @@ _PLAY_DATA = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='time', full_name='play_data.time', index=3,
+      number=4, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -66,7 +73,7 @@ _PLAY_DATA = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=29,
-  serialized_end=80,
+  serialized_end=94,
 )
 
 
@@ -96,8 +103,8 @@ _PLAY_DATA_ARRAY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=82,
-  serialized_end=126,
+  serialized_start=96,
+  serialized_end=140,
 )
 
 _PLAY_DATA_ARRAY.fields_by_name['items'].message_type = _PLAY_DATA

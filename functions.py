@@ -18,6 +18,17 @@ def runtime(func):
         print("uesd time:", end - start)
     return wrapper
 
+#单例修饰词
+def singleton(cls):
+    instances = {}
+    @functools.wraps(cls)
+    def getInstance(*args, **kw):
+        if cls not in instances:
+            instances[cls] = cls(*args, **kw)
+        return instances[cls]
+    return getInstance
+
+
 #获取系统时间
 def getSystemTime():
     #protobuf抽风，太大的数字序列化会报错，和客户端约定减少特定的值

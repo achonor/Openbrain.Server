@@ -7,6 +7,7 @@ from Server.GameServer import GameServer
 from Server.GameSQL import GameSQL
 from Server.GameMatch import GameMatch
 from Server.GameProtocolFactory import GameProtocolFactory
+from Render.PlayDataConfig import PlayDataConfig
 
 #包头长度
 global LENGTH_HEAD
@@ -31,3 +32,6 @@ def InitGameData():
     gameServer = GameServer()
     gameSQL = GameSQL()
     gameMatch = GameMatch()
+
+    #加载配置文件
+    PlayDataConfig().loadConfig()
