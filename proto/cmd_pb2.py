@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\tcmd.proto\"u\n\nroot_proto\x12\x12\n\nconnect_ID\x18\x01 \x01(\x05\x12\x12\n\nmessage_ID\x18\x02 \x01(\x05\x12\x14\n\x0cmessage_name\x18\x03 \x01(\t\x12\x14\n\x0cmessage_data\x18\x04 \x01(\x0c\x12\x13\n\x0bserver_time\x18\x05 \x01(\x01\"\xb5\x02\n\x12struct_player_info\x12\x11\n\tuser_name\x18\x01 \x01(\t\x12\x11\n\tuser_icon\x18\x02 \x01(\t\x12\x0e\n\x06\x65nergy\x18\x03 \x01(\x05\x12\x0c\n\x04gems\x18\x04 \x01(\x05\x12!\n\x05level\x18\x05 \x01(\x0e\x32\x12.enum_player_level\x12-\n\x0bproficiency\x18\x06 \x01(\x0e\x32\x18.enum_player_proficiency\x12\r\n\x05speed\x18\x07 \x01(\x02\x12\x10\n\x08judgment\x18\x08 \x01(\x02\x12\x11\n\tcalculate\x18\t \x01(\x02\x12\x10\n\x08\x61\x63\x63uracy\x18\n \x01(\x02\x12\x13\n\x0bobservation\x18\x0b \x01(\x02\x12\x0e\n\x06memory\x18\x0c \x01(\x02\x12\x0f\n\x07ranking\x18\r \x01(\x05\x12\r\n\x05grade\x18\x0e \x01(\x05\"O\n\x16req_message_login_game\x12\x0f\n\x07user_ID\x18\x01 \x01(\t\x12\x11\n\tuser_name\x18\x02 \x01(\t\x12\x11\n\tuser_icon\x18\x03 \x01(\t\"P\n\x16rep_message_login_game\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\x12(\n\x0bplayer_info\x18\x02 \x01(\x0b\x32\x13.struct_player_info\"C\n\x17rep_message_player_info\x12(\n\x0bplayer_info\x18\x01 \x01(\x0b\x32\x13.struct_player_info\"\x19\n\x17req_message_start_match\"\'\n\x17rep_message_start_match\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\"E\n\x19rep_message_match_success\x12(\n\x0bplayer_info\x18\x01 \x01(\x0b\x32\x13.struct_player_info\"\x19\n\x17req_message_start_ready\"\x97\x01\n\x17rep_message_start_ready\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\x12\x0f\n\x07innings\x18\x02 \x01(\x05\x12\x12\n\nstart_time\x18\x03 \x01(\x01\x12(\n\x0bplayer_info\x18\x04 \x01(\x0b\x32\x13.struct_player_info\x12\x11\n\trand_play\x18\x05 \x03(\x05\x12\x0c\n\x04play\x18\x06 \x01(\x05\")\n\x16req_message_start_game\x12\x0f\n\x07innings\x18\x01 \x01(\x05\"8\n\x16rep_message_start_game\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\x12\x10\n\x08\x65nd_time\x18\x02 \x01(\x01\">\n\x18req_message_updata_grade\x12\x0f\n\x07innings\x18\x01 \x01(\x05\x12\x11\n\tadd_value\x18\x02 \x01(\x05\"7\n\x18rep_message_updata_grade\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\x12\r\n\x05grade\x18\x02 \x01(\x05\"2\n!rep_message_updata_opponent_grade\x12\r\n\x05grade\x18\x01 \x01(\x05*o\n\nERROR_CODE\x12\x06\n\x02OK\x10\x00\x12\x10\n\x0bHAS_REFEREE\x10\xd1\x0f\x12\x13\n\x0eGAME_NOT_START\x10\xd2\x0f\x12\x19\n\x14INNINGS_GAME_HAS_END\x10\xd3\x0f\x12\x17\n\x12OPPONENT_NOT_FOUND\x10\xd4\x0f*P\n\x11\x65num_player_level\x12\n\n\x06\x43OPPER\x10\x00\x12\n\n\x06SILVER\x10\x01\x12\x08\n\x04GOLD\x10\x03\x12\x0c\n\x08PLATINUM\x10\x04\x12\x0b\n\x07\x44IAMOND\x10\x05*v\n\x17\x65num_player_proficiency\x12\x07\n\x03TOE\x10\x00\x12\x08\n\x04\x43\x41LF\x10\x01\x12\x08\n\x04KNEE\x10\x02\x12\t\n\x05THIGH\x10\x03\x12\x08\n\x04\x42UTT\x10\x04\x12\t\n\x05\x42\x45LLY\x10\x05\x12\t\n\x05\x43HEST\x10\x06\x12\x08\n\x04NECK\x10\x07\x12\t\n\x05\x42RAIN\x10\x08\x62\x06proto3')
+  serialized_pb=_b('\n\tcmd.proto\"u\n\nroot_proto\x12\x12\n\nconnect_ID\x18\x01 \x01(\x05\x12\x12\n\nmessage_ID\x18\x02 \x01(\x05\x12\x14\n\x0cmessage_name\x18\x03 \x01(\t\x12\x14\n\x0cmessage_data\x18\x04 \x01(\x0c\x12\x13\n\x0bserver_time\x18\x05 \x01(\x01\"\xb5\x02\n\x12struct_player_info\x12\x11\n\tuser_name\x18\x01 \x01(\t\x12\x11\n\tuser_icon\x18\x02 \x01(\t\x12\x0e\n\x06\x65nergy\x18\x03 \x01(\x05\x12\x0c\n\x04gems\x18\x04 \x01(\x05\x12!\n\x05level\x18\x05 \x01(\x0e\x32\x12.enum_player_level\x12-\n\x0bproficiency\x18\x06 \x01(\x0e\x32\x18.enum_player_proficiency\x12\r\n\x05speed\x18\x07 \x01(\x02\x12\x10\n\x08judgment\x18\x08 \x01(\x02\x12\x11\n\tcalculate\x18\t \x01(\x02\x12\x10\n\x08\x61\x63\x63uracy\x18\n \x01(\x02\x12\x13\n\x0bobservation\x18\x0b \x01(\x02\x12\x0e\n\x06memory\x18\x0c \x01(\x02\x12\x0f\n\x07ranking\x18\r \x01(\x05\x12\r\n\x05grade\x18\x0e \x01(\x05\"O\n\x16req_message_login_game\x12\x0f\n\x07user_ID\x18\x01 \x01(\t\x12\x11\n\tuser_name\x18\x02 \x01(\t\x12\x11\n\tuser_icon\x18\x03 \x01(\t\"P\n\x16rep_message_login_game\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\x12(\n\x0bplayer_info\x18\x02 \x01(\x0b\x32\x13.struct_player_info\"C\n\x17rep_message_player_info\x12(\n\x0bplayer_info\x18\x01 \x01(\x0b\x32\x13.struct_player_info\"\x19\n\x17req_message_start_match\"\'\n\x17rep_message_start_match\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\"E\n\x19rep_message_match_success\x12(\n\x0bplayer_info\x18\x01 \x01(\x0b\x32\x13.struct_player_info\"\x19\n\x17req_message_start_ready\"\x9d\x01\n\x17rep_message_start_ready\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\x12\x0f\n\x07innings\x18\x02 \x01(\x05\x12\x12\n\nstart_time\x18\x03 \x01(\x01\x12(\n\x0bplayer_info\x18\x04 \x01(\x0b\x32\x13.struct_player_info\x12\x14\n\x0crand_play_id\x18\x05 \x03(\x05\x12\x0f\n\x07play_id\x18\x06 \x01(\x05\")\n\x16req_message_start_game\x12\x0f\n\x07innings\x18\x01 \x01(\x05\"\x8b\x01\n\x16rep_message_start_game\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\x12\x0f\n\x07play_id\x18\x02 \x01(\x05\x12\x16\n\x0eintro_end_time\x18\x03 \x01(\x01\x12\x10\n\x08\x65nd_time\x18\x04 \x01(\x01\x12(\n\x0bplayer_info\x18\x05 \x01(\x0b\x32\x13.struct_player_info\">\n\x18req_message_updata_grade\x12\x0f\n\x07innings\x18\x01 \x01(\x05\x12\x11\n\tadd_value\x18\x02 \x01(\x05\"7\n\x18rep_message_updata_grade\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\x12\r\n\x05grade\x18\x02 \x01(\x05\"2\n!rep_message_updata_opponent_grade\x12\r\n\x05grade\x18\x01 \x01(\x05*o\n\nERROR_CODE\x12\x06\n\x02OK\x10\x00\x12\x10\n\x0bHAS_REFEREE\x10\xd1\x0f\x12\x13\n\x0eGAME_NOT_START\x10\xd2\x0f\x12\x19\n\x14INNINGS_GAME_HAS_END\x10\xd3\x0f\x12\x17\n\x12OPPONENT_NOT_FOUND\x10\xd4\x0f*P\n\x11\x65num_player_level\x12\n\n\x06\x43OPPER\x10\x00\x12\n\n\x06SILVER\x10\x01\x12\x08\n\x04GOLD\x10\x03\x12\x0c\n\x08PLATINUM\x10\x04\x12\x0b\n\x07\x44IAMOND\x10\x05*v\n\x17\x65num_player_proficiency\x12\x07\n\x03TOE\x10\x00\x12\x08\n\x04\x43\x41LF\x10\x01\x12\x08\n\x04KNEE\x10\x02\x12\t\n\x05THIGH\x10\x03\x12\x08\n\x04\x42UTT\x10\x04\x12\t\n\x05\x42\x45LLY\x10\x05\x12\t\n\x05\x43HEST\x10\x06\x12\x08\n\x04NECK\x10\x07\x12\t\n\x05\x42RAIN\x10\x08\x62\x06proto3')
 )
 
 _ERROR_CODE = _descriptor.EnumDescriptor(
@@ -52,8 +52,8 @@ _ERROR_CODE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1270,
-  serialized_end=1381,
+  serialized_start=1360,
+  serialized_end=1471,
 )
 _sym_db.RegisterEnumDescriptor(_ERROR_CODE)
 
@@ -87,8 +87,8 @@ _ENUM_PLAYER_LEVEL = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1383,
-  serialized_end=1463,
+  serialized_start=1473,
+  serialized_end=1553,
 )
 _sym_db.RegisterEnumDescriptor(_ENUM_PLAYER_LEVEL)
 
@@ -138,8 +138,8 @@ _ENUM_PLAYER_PROFICIENCY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1465,
-  serialized_end=1583,
+  serialized_start=1555,
+  serialized_end=1673,
 )
 _sym_db.RegisterEnumDescriptor(_ENUM_PLAYER_PROFICIENCY)
 
@@ -607,14 +607,14 @@ _REP_MESSAGE_START_READY = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='rand_play', full_name='rep_message_start_ready.rand_play', index=4,
+      name='rand_play_id', full_name='rep_message_start_ready.rand_play_id', index=4,
       number=5, type=5, cpp_type=1, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='play', full_name='rep_message_start_ready.play', index=5,
+      name='play_id', full_name='rep_message_start_ready.play_id', index=5,
       number=6, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -633,7 +633,7 @@ _REP_MESSAGE_START_READY = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=843,
-  serialized_end=994,
+  serialized_end=1000,
 )
 
 
@@ -663,8 +663,8 @@ _REQ_MESSAGE_START_GAME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=996,
-  serialized_end=1037,
+  serialized_start=1002,
+  serialized_end=1043,
 )
 
 
@@ -683,9 +683,30 @@ _REP_MESSAGE_START_GAME = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='end_time', full_name='rep_message_start_game.end_time', index=1,
-      number=2, type=1, cpp_type=5, label=1,
+      name='play_id', full_name='rep_message_start_game.play_id', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='intro_end_time', full_name='rep_message_start_game.intro_end_time', index=2,
+      number=3, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='end_time', full_name='rep_message_start_game.end_time', index=3,
+      number=4, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='player_info', full_name='rep_message_start_game.player_info', index=4,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -701,8 +722,8 @@ _REP_MESSAGE_START_GAME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1039,
-  serialized_end=1095,
+  serialized_start=1046,
+  serialized_end=1185,
 )
 
 
@@ -739,8 +760,8 @@ _REQ_MESSAGE_UPDATA_GRADE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1097,
-  serialized_end=1159,
+  serialized_start=1187,
+  serialized_end=1249,
 )
 
 
@@ -777,8 +798,8 @@ _REP_MESSAGE_UPDATA_GRADE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1161,
-  serialized_end=1216,
+  serialized_start=1251,
+  serialized_end=1306,
 )
 
 
@@ -808,8 +829,8 @@ _REP_MESSAGE_UPDATA_OPPONENT_GRADE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1218,
-  serialized_end=1268,
+  serialized_start=1308,
+  serialized_end=1358,
 )
 
 _STRUCT_PLAYER_INFO.fields_by_name['level'].enum_type = _ENUM_PLAYER_LEVEL
@@ -818,6 +839,7 @@ _REP_MESSAGE_LOGIN_GAME.fields_by_name['player_info'].message_type = _STRUCT_PLA
 _REP_MESSAGE_PLAYER_INFO.fields_by_name['player_info'].message_type = _STRUCT_PLAYER_INFO
 _REP_MESSAGE_MATCH_SUCCESS.fields_by_name['player_info'].message_type = _STRUCT_PLAYER_INFO
 _REP_MESSAGE_START_READY.fields_by_name['player_info'].message_type = _STRUCT_PLAYER_INFO
+_REP_MESSAGE_START_GAME.fields_by_name['player_info'].message_type = _STRUCT_PLAYER_INFO
 DESCRIPTOR.message_types_by_name['root_proto'] = _ROOT_PROTO
 DESCRIPTOR.message_types_by_name['struct_player_info'] = _STRUCT_PLAYER_INFO
 DESCRIPTOR.message_types_by_name['req_message_login_game'] = _REQ_MESSAGE_LOGIN_GAME

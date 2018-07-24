@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x19xls2proto/play_data.proto\"A\n\tplay_data\x12\n\n\x02id\x18\x01 \x01(\r\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0c\n\x04icon\x18\x03 \x01(\t\x12\x0c\n\x04time\x18\x04 \x01(\r\",\n\x0fplay_data_ARRAY\x12\x19\n\x05items\x18\x01 \x03(\x0b\x32\n.play_datab\x06proto3')
+  serialized_pb=_b('\n\x19xls2proto/play_data.proto\"y\n\tplay_data\x12\n\n\x02id\x18\x01 \x01(\r\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0c\n\x04icon\x18\x03 \x01(\t\x12\x12\n\nintro_icon\x18\x04 \x01(\t\x12\x12\n\nintro_time\x18\x05 \x01(\x02\x12\x0c\n\x04time\x18\x06 \x01(\x02\x12\x0e\n\x06param1\x18\x07 \x03(\r\",\n\x0fplay_data_ARRAY\x12\x19\n\x05items\x18\x01 \x03(\x0b\x32\n.play_datab\x06proto3')
 )
 
 
@@ -54,9 +54,30 @@ _PLAY_DATA = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='time', full_name='play_data.time', index=3,
-      number=4, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
+      name='intro_icon', full_name='play_data.intro_icon', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='intro_time', full_name='play_data.intro_time', index=4,
+      number=5, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='time', full_name='play_data.time', index=5,
+      number=6, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='param1', full_name='play_data.param1', index=6,
+      number=7, type=13, cpp_type=3, label=3,
+      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -73,7 +94,7 @@ _PLAY_DATA = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=29,
-  serialized_end=94,
+  serialized_end=150,
 )
 
 
@@ -103,8 +124,8 @@ _PLAY_DATA_ARRAY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=96,
-  serialized_end=140,
+  serialized_start=152,
+  serialized_end=196,
 )
 
 _PLAY_DATA_ARRAY.fields_by_name['items'].message_type = _PLAY_DATA

@@ -21,12 +21,15 @@ global gameServer
 global gameSQL
 #全局匹配控制类
 global gameMatch
+#配置文件
+global playDataConfig
 
 def InitGameData():
     global gameFactory
     global gameServer
     global gameSQL
     global gameMatch
+    global playDataConfig
 
     gameFactory = GameProtocolFactory()
     gameServer = GameServer()
@@ -34,4 +37,4 @@ def InitGameData():
     gameMatch = GameMatch()
 
     #加载配置文件
-    PlayDataConfig().loadConfig()
+    playDataConfig = PlayDataConfig()

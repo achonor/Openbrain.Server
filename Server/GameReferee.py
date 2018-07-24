@@ -12,14 +12,13 @@ from proto import cmd_pb2
 from twisted.internet import reactor
 from twisted.internet.defer import inlineCallbacks, Deferred
 
+
+
 #游戏局数
 TOTAL_INNINGS = 3
 
 #开始准备时间
 READY_STAY_TIME = 5
-
-#单局游戏时间
-ONE_INNINGS_TIME = 20
 
 #当前游戏玩法
 PLAY_NUMBER = [0, 1, 2]
@@ -31,11 +30,15 @@ class InningsData:
         #本局游戏开始时间
         self.start_time = functions.getSystemTime() + READY_STAY_TIME
         #客户端展示随机玩法
-        self.rand_play = random.sample(PLAY_NUMBER, 3)
+        self.rand_play_id = random.sample(GameData.playDataConfig.getAllPlayID(), 3)
         #本局玩法
-        self.play = random.choice(self.rand_play)
+        self.play_id = random.choice(self.rand_play_id)
+        #玩法配置
+        self.play_data = GameData.playDataConfig.getDataByID(self.play_id)
+        #介绍结束时间
+        self.intro_end_time = self.start_time + self.play_data.intro_time
         #本局游戏结束时间
-        self.end_time = self.start_time + ONE_INNINGS_TIME
+        self.end_time = self.intro_end_time + self.play_data.time
         #分数
         self.grade = {}
         self.grade[player1] = 0
@@ -63,17 +66,21 @@ class GameReferee:
 
     @inlineCallbacks
     def gameLoop(self):
-        while(self.innings_idx < TOTAL_INNINGS):
-            #局数
-            self.innings_idx += 1
-            self.innings_list.append(InningsData(self.players[0], self.players[1]))
-            #等待游戏结束
-            wait_end = Deferred()
-            reactor.callLater(READY_STAY_TIME + ONE_INNINGS_TIME, wait_end.callback, 1)
-            yield wait_end
-            #推送本局游戏结束
+        try:
+            while(self.innings_idx < TOTAL_INNINGS):
+                #局数
+                self.innings_idx += 1
+                cur_innings = InningsData(self.players[0], self.players[1])
+                self.innings_list.append(cur_innings)
+                #等待游戏结束
+                wait_end = Deferred()
+                reactor.callLater(cur_innings.end_time - functions.getSystemTime(), wait_end.callback, 1)
+                yield wait_end
+                #推送本局游戏结束
 
-        #游戏结束
+            #游戏结束
+        except Exception as e:
+            print(TAG, "Error: ", e)
     #更新分数
     def updateGrade(self, player, index, addValue):
         innings = self.innings_list[index]
@@ -90,3 +97,4 @@ class GameReferee:
         if (player == self.players[0]):
             return self.players[1]
         return self.players[0]
+

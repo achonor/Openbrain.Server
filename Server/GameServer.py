@@ -113,8 +113,8 @@ class GameServer(object):
             rProto.innings = referee.innings_idx
             rProto.start_time = innings.start_time
             opponent.SetPlayerInfoToProto(rProto.player_info)
-            functions.listToRepeated(innings.rand_play, rProto.rand_play)
-            rProto.play = innings.play
+            functions.listToRepeated(innings.rand_play_id, rProto.rand_play_id)
+            rProto.play_id = innings.play_id
         except GameException as e:
             rProto.isOK = e.error_code
 
@@ -127,10 +127,15 @@ class GameServer(object):
             rProto = cmd_pb2.rep_message_start_game()
             # 获取裁判
             referee = self.__refereeDict.get(player)
+            #获取对手
+            opponent = referee.getOpponent(player)
             #获取当前局
             innings = referee.getCurInnings()
             #设置返回信息
             rProto.end_time = innings.end_time
+            rProto.play_id = innings.play_id
+            rProto.intro_end_time = innings.intro_end_time
+            opponent.SetPlayerInfoToProto(rProto.player_info)
         except GameException as e:
             rProto.isOK = e.error_code
 
@@ -165,17 +170,20 @@ class GameServer(object):
 
     #推送匹配成功
     def sendMatchSuccess(self, player, otherPlayer):
-        rProto = cmd_pb2.rep_message_match_success()
-        otherPlayer.SetPlayerInfoToProto(rProto.player_info)
-        #推送协议
-        GameData.gameFactory.returnData(player.linkProto, 0, rProto)
-        #添加裁判
-        if (True or None == self.__refereeDict.get(player) and None == self.__refereeDict.get(otherPlayer)):
-            referee = GameReferee(player, otherPlayer)
-            self.__refereeDict[player] = referee
-            self.__refereeDict[otherPlayer] = referee
-        elif(self.__refereeDict.get(player) != self.__refereeDict.get(otherPlayer)):
-            print(TAG, "Error: player different referee")
+        try:
+            rProto = cmd_pb2.rep_message_match_success()
+            otherPlayer.SetPlayerInfoToProto(rProto.player_info)
+            #推送协议
+            GameData.gameFactory.returnData(player.linkProto, 0, rProto)
+            #添加裁判
+            if (True or None == self.__refereeDict.get(player) and None == self.__refereeDict.get(otherPlayer)):
+                referee = GameReferee(player, otherPlayer)
+                self.__refereeDict[player] = referee
+                self.__refereeDict[otherPlayer] = referee
+            elif(self.__refereeDict.get(player) != self.__refereeDict.get(otherPlayer)):
+                print(TAG, "Error: player different referee")
+        except Exception as e:
+            print(TAG, e)
     #获取玩家
     def getPlayer(self, userID):
         return self.__playerDict.get(userID)
