@@ -32,7 +32,7 @@ class InningsData:
         #客户端展示随机玩法
         self.rand_play_id = random.sample(GameData.playDataConfig.getAllPlayID(), 3)
         #本局玩法
-        self.play_id = random.choice(self.rand_play_id)
+        self.play_id = 0#random.choice(self.rand_play_id)
         #玩法配置
         self.play_data = GameData.playDataConfig.getDataByID(self.play_id)
         #介绍结束时间
@@ -68,15 +68,20 @@ class GameReferee:
     def gameLoop(self):
         try:
             while(self.innings_idx < TOTAL_INNINGS):
-                #局数
-                self.innings_idx += 1
                 cur_innings = InningsData(self.players[0], self.players[1])
                 self.innings_list.append(cur_innings)
                 #等待游戏结束
                 wait_end = Deferred()
+                print("cur_innings.start_time = ", cur_innings.start_time)
+                print("cur_innings.end_time = ", cur_innings.end_time, "functions.getSystemTime() = ", functions.getSystemTime())
                 reactor.callLater(cur_innings.end_time - functions.getSystemTime(), wait_end.callback, 1)
                 yield wait_end
+                # 局数+1
+                self.innings_idx += 1
                 #推送本局游戏结束
+                rProto = cmd_pb2.rep_message_innings_end()
+                rProto.has_innings = (self.innings_idx < TOTAL_INNINGS)
+                GameData.gameServer.sendInningsEnd(self.players[0], self.players[1], rProto)
 
             #游戏结束
         except Exception as e:
@@ -90,7 +95,7 @@ class GameReferee:
 
     #获取当前局
     def getCurInnings(self):
-        return self.innings_list[self.innings_idx - 1]
+        return self.innings_list[self.innings_idx]
 
     #获取对手
     def getOpponent(self, player):

@@ -148,7 +148,7 @@ class GameServer(object):
             rProto = cmd_pb2.rep_message_updata_grade()
             #获取裁判
             referee = self.__refereeDict.get(player)
-            rProto.grade = referee.updateGrade(proto.innings, proto.add_value)
+            rProto.grade = referee.updateGrade(player, proto.innings, proto.add_value)
             #获取对手
             opponent = referee.getOpponent(player)
             #给玩家对手推送分数
@@ -176,7 +176,7 @@ class GameServer(object):
             #推送协议
             GameData.gameFactory.returnData(player.linkProto, 0, rProto)
             #添加裁判
-            if (True or None == self.__refereeDict.get(player) and None == self.__refereeDict.get(otherPlayer)):
+            if (None == self.__refereeDict.get(player) and None == self.__refereeDict.get(otherPlayer)):
                 referee = GameReferee(player, otherPlayer)
                 self.__refereeDict[player] = referee
                 self.__refereeDict[otherPlayer] = referee
@@ -184,6 +184,12 @@ class GameServer(object):
                 print(TAG, "Error: player different referee")
         except Exception as e:
             print(TAG, e)
+
+    def sendInningsEnd(self, player1, player2, rProto):
+        # 推送协议
+        GameData.gameFactory.returnData(player1.linkProto, 0, rProto)
+        GameData.gameFactory.returnData(player2.linkProto, 0, rProto)
+
     #获取玩家
     def getPlayer(self, userID):
         return self.__playerDict.get(userID)
