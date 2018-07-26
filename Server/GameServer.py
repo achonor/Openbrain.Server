@@ -184,11 +184,19 @@ class GameServer(object):
                 print(TAG, "Error: player different referee")
         except Exception as e:
             print(TAG, e)
-
+    #推送局结束
     def sendInningsEnd(self, player1, player2, rProto):
         # 推送协议
         GameData.gameFactory.returnData(player1.linkProto, 0, rProto)
         GameData.gameFactory.returnData(player2.linkProto, 0, rProto)
+    #推送游戏结束
+    def sendGameEnd(self, player1, player2, rProto1, rProto2):
+        #删除裁判
+        self.__refereeDict.pop(player1, None)
+        self.__refereeDict.pop(player2, None)
+        # 推送协议
+        GameData.gameFactory.returnData(player1.linkProto, 0, rProto1)
+        GameData.gameFactory.returnData(player2.linkProto, 0, rProto2)
 
     #获取玩家
     def getPlayer(self, userID):

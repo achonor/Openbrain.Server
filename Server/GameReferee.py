@@ -82,8 +82,18 @@ class GameReferee:
                 rProto = cmd_pb2.rep_message_innings_end()
                 rProto.has_innings = (self.innings_idx < TOTAL_INNINGS)
                 GameData.gameServer.sendInningsEnd(self.players[0], self.players[1], rProto)
+            #推送游戏结束
+            rPtotos = []
+            for idx in range(len(self.players)):
+                player = self.players[idx]
+                opponent = self.getOpponent(player)
+                rPtotos.append(cmd_pb2.rep_message_game_end())
+                opponent.SetPlayerInfoToProto(rPtotos[idx].player_info)
+                for innings in self.innings_list:
+                    rPtotos[idx].left_grade.append(innings.grade[player])
+                    rPtotos[idx].right_grade.append(innings.grade[opponent])
+            GameData.gameServer.sendGameEnd(self.players[0], self.players[1], rPtotos[0], rPtotos[1])
 
-            #游戏结束
         except Exception as e:
             print(TAG, "Error: ", e)
     #更新分数

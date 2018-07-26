@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\tcmd.proto\"u\n\nroot_proto\x12\x12\n\nconnect_ID\x18\x01 \x01(\x05\x12\x12\n\nmessage_ID\x18\x02 \x01(\x05\x12\x14\n\x0cmessage_name\x18\x03 \x01(\t\x12\x14\n\x0cmessage_data\x18\x04 \x01(\x0c\x12\x13\n\x0bserver_time\x18\x05 \x01(\x01\"\xb5\x02\n\x12struct_player_info\x12\x11\n\tuser_name\x18\x01 \x01(\t\x12\x11\n\tuser_icon\x18\x02 \x01(\t\x12\x0e\n\x06\x65nergy\x18\x03 \x01(\x05\x12\x0c\n\x04gems\x18\x04 \x01(\x05\x12!\n\x05level\x18\x05 \x01(\x0e\x32\x12.enum_player_level\x12-\n\x0bproficiency\x18\x06 \x01(\x0e\x32\x18.enum_player_proficiency\x12\r\n\x05speed\x18\x07 \x01(\x02\x12\x10\n\x08judgment\x18\x08 \x01(\x02\x12\x11\n\tcalculate\x18\t \x01(\x02\x12\x10\n\x08\x61\x63\x63uracy\x18\n \x01(\x02\x12\x13\n\x0bobservation\x18\x0b \x01(\x02\x12\x0e\n\x06memory\x18\x0c \x01(\x02\x12\x0f\n\x07ranking\x18\r \x01(\x05\x12\r\n\x05grade\x18\x0e \x01(\x05\"O\n\x16req_message_login_game\x12\x0f\n\x07user_ID\x18\x01 \x01(\t\x12\x11\n\tuser_name\x18\x02 \x01(\t\x12\x11\n\tuser_icon\x18\x03 \x01(\t\"P\n\x16rep_message_login_game\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\x12(\n\x0bplayer_info\x18\x02 \x01(\x0b\x32\x13.struct_player_info\"C\n\x17rep_message_player_info\x12(\n\x0bplayer_info\x18\x01 \x01(\x0b\x32\x13.struct_player_info\"\x19\n\x17req_message_start_match\"\'\n\x17rep_message_start_match\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\"E\n\x19rep_message_match_success\x12(\n\x0bplayer_info\x18\x01 \x01(\x0b\x32\x13.struct_player_info\"\x19\n\x17req_message_start_ready\"\x9d\x01\n\x17rep_message_start_ready\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\x12\x0f\n\x07innings\x18\x02 \x01(\x05\x12\x12\n\nstart_time\x18\x03 \x01(\x01\x12(\n\x0bplayer_info\x18\x04 \x01(\x0b\x32\x13.struct_player_info\x12\x14\n\x0crand_play_id\x18\x05 \x03(\x05\x12\x0f\n\x07play_id\x18\x06 \x01(\x05\")\n\x16req_message_start_game\x12\x0f\n\x07innings\x18\x01 \x01(\x05\"\x8b\x01\n\x16rep_message_start_game\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\x12\x0f\n\x07play_id\x18\x02 \x01(\x05\x12\x16\n\x0eintro_end_time\x18\x03 \x01(\x01\x12\x10\n\x08\x65nd_time\x18\x04 \x01(\x01\x12(\n\x0bplayer_info\x18\x05 \x01(\x0b\x32\x13.struct_player_info\">\n\x18req_message_updata_grade\x12\x0f\n\x07innings\x18\x01 \x01(\x05\x12\x11\n\tadd_value\x18\x02 \x01(\x05\"7\n\x18rep_message_updata_grade\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\x12\r\n\x05grade\x18\x02 \x01(\x05\"2\n!rep_message_updata_opponent_grade\x12\r\n\x05grade\x18\x01 \x01(\x05\".\n\x17rep_message_innings_end\x12\x13\n\x0bhas_innings\x18\x01 \x01(\x08*o\n\nERROR_CODE\x12\x06\n\x02OK\x10\x00\x12\x10\n\x0bHAS_REFEREE\x10\xd1\x0f\x12\x13\n\x0eGAME_NOT_START\x10\xd2\x0f\x12\x19\n\x14INNINGS_GAME_HAS_END\x10\xd3\x0f\x12\x17\n\x12OPPONENT_NOT_FOUND\x10\xd4\x0f*P\n\x11\x65num_player_level\x12\n\n\x06\x43OPPER\x10\x00\x12\n\n\x06SILVER\x10\x01\x12\x08\n\x04GOLD\x10\x03\x12\x0c\n\x08PLATINUM\x10\x04\x12\x0b\n\x07\x44IAMOND\x10\x05*v\n\x17\x65num_player_proficiency\x12\x07\n\x03TOE\x10\x00\x12\x08\n\x04\x43\x41LF\x10\x01\x12\x08\n\x04KNEE\x10\x02\x12\t\n\x05THIGH\x10\x03\x12\x08\n\x04\x42UTT\x10\x04\x12\t\n\x05\x42\x45LLY\x10\x05\x12\t\n\x05\x43HEST\x10\x06\x12\x08\n\x04NECK\x10\x07\x12\t\n\x05\x42RAIN\x10\x08\x62\x06proto3')
+  serialized_pb=_b('\n\tcmd.proto\"u\n\nroot_proto\x12\x12\n\nconnect_ID\x18\x01 \x01(\x05\x12\x12\n\nmessage_ID\x18\x02 \x01(\x05\x12\x14\n\x0cmessage_name\x18\x03 \x01(\t\x12\x14\n\x0cmessage_data\x18\x04 \x01(\x0c\x12\x13\n\x0bserver_time\x18\x05 \x01(\x01\"\xb5\x02\n\x12struct_player_info\x12\x11\n\tuser_name\x18\x01 \x01(\t\x12\x11\n\tuser_icon\x18\x02 \x01(\t\x12\x0e\n\x06\x65nergy\x18\x03 \x01(\x05\x12\x0c\n\x04gems\x18\x04 \x01(\x05\x12!\n\x05level\x18\x05 \x01(\x0e\x32\x12.enum_player_level\x12-\n\x0bproficiency\x18\x06 \x01(\x0e\x32\x18.enum_player_proficiency\x12\r\n\x05speed\x18\x07 \x01(\x02\x12\x10\n\x08judgment\x18\x08 \x01(\x02\x12\x11\n\tcalculate\x18\t \x01(\x02\x12\x10\n\x08\x61\x63\x63uracy\x18\n \x01(\x02\x12\x13\n\x0bobservation\x18\x0b \x01(\x02\x12\x0e\n\x06memory\x18\x0c \x01(\x02\x12\x0f\n\x07ranking\x18\r \x01(\x05\x12\r\n\x05grade\x18\x0e \x01(\x05\"O\n\x16req_message_login_game\x12\x0f\n\x07user_ID\x18\x01 \x01(\t\x12\x11\n\tuser_name\x18\x02 \x01(\t\x12\x11\n\tuser_icon\x18\x03 \x01(\t\"P\n\x16rep_message_login_game\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\x12(\n\x0bplayer_info\x18\x02 \x01(\x0b\x32\x13.struct_player_info\"C\n\x17rep_message_player_info\x12(\n\x0bplayer_info\x18\x01 \x01(\x0b\x32\x13.struct_player_info\"\x19\n\x17req_message_start_match\"\'\n\x17rep_message_start_match\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\"E\n\x19rep_message_match_success\x12(\n\x0bplayer_info\x18\x01 \x01(\x0b\x32\x13.struct_player_info\"\x19\n\x17req_message_start_ready\"\x9d\x01\n\x17rep_message_start_ready\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\x12\x0f\n\x07innings\x18\x02 \x01(\x05\x12\x12\n\nstart_time\x18\x03 \x01(\x01\x12(\n\x0bplayer_info\x18\x04 \x01(\x0b\x32\x13.struct_player_info\x12\x14\n\x0crand_play_id\x18\x05 \x03(\x05\x12\x0f\n\x07play_id\x18\x06 \x01(\x05\")\n\x16req_message_start_game\x12\x0f\n\x07innings\x18\x01 \x01(\x05\"\x8b\x01\n\x16rep_message_start_game\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\x12\x0f\n\x07play_id\x18\x02 \x01(\x05\x12\x16\n\x0eintro_end_time\x18\x03 \x01(\x01\x12\x10\n\x08\x65nd_time\x18\x04 \x01(\x01\x12(\n\x0bplayer_info\x18\x05 \x01(\x0b\x32\x13.struct_player_info\">\n\x18req_message_updata_grade\x12\x0f\n\x07innings\x18\x01 \x01(\x05\x12\x11\n\tadd_value\x18\x02 \x01(\x05\"7\n\x18rep_message_updata_grade\x12\x0c\n\x04isOK\x18\x01 \x01(\x05\x12\r\n\x05grade\x18\x02 \x01(\x05\"2\n!rep_message_updata_opponent_grade\x12\r\n\x05grade\x18\x01 \x01(\x05\".\n\x17rep_message_innings_end\x12\x13\n\x0bhas_innings\x18\x01 \x01(\x08\"i\n\x14rep_message_game_end\x12\x12\n\nleft_grade\x18\x01 \x03(\x05\x12\x13\n\x0bright_grade\x18\x02 \x03(\x05\x12(\n\x0bplayer_info\x18\x05 \x01(\x0b\x32\x13.struct_player_info*o\n\nERROR_CODE\x12\x06\n\x02OK\x10\x00\x12\x10\n\x0bHAS_REFEREE\x10\xd1\x0f\x12\x13\n\x0eGAME_NOT_START\x10\xd2\x0f\x12\x19\n\x14INNINGS_GAME_HAS_END\x10\xd3\x0f\x12\x17\n\x12OPPONENT_NOT_FOUND\x10\xd4\x0f*P\n\x11\x65num_player_level\x12\n\n\x06\x43OPPER\x10\x00\x12\n\n\x06SILVER\x10\x01\x12\x08\n\x04GOLD\x10\x03\x12\x0c\n\x08PLATINUM\x10\x04\x12\x0b\n\x07\x44IAMOND\x10\x05*v\n\x17\x65num_player_proficiency\x12\x07\n\x03TOE\x10\x00\x12\x08\n\x04\x43\x41LF\x10\x01\x12\x08\n\x04KNEE\x10\x02\x12\t\n\x05THIGH\x10\x03\x12\x08\n\x04\x42UTT\x10\x04\x12\t\n\x05\x42\x45LLY\x10\x05\x12\t\n\x05\x43HEST\x10\x06\x12\x08\n\x04NECK\x10\x07\x12\t\n\x05\x42RAIN\x10\x08\x62\x06proto3')
 )
 
 _ERROR_CODE = _descriptor.EnumDescriptor(
@@ -52,8 +52,8 @@ _ERROR_CODE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1408,
-  serialized_end=1519,
+  serialized_start=1515,
+  serialized_end=1626,
 )
 _sym_db.RegisterEnumDescriptor(_ERROR_CODE)
 
@@ -87,8 +87,8 @@ _ENUM_PLAYER_LEVEL = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1521,
-  serialized_end=1601,
+  serialized_start=1628,
+  serialized_end=1708,
 )
 _sym_db.RegisterEnumDescriptor(_ENUM_PLAYER_LEVEL)
 
@@ -138,8 +138,8 @@ _ENUM_PLAYER_PROFICIENCY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1603,
-  serialized_end=1721,
+  serialized_start=1710,
+  serialized_end=1828,
 )
 _sym_db.RegisterEnumDescriptor(_ENUM_PLAYER_PROFICIENCY)
 
@@ -864,6 +864,51 @@ _REP_MESSAGE_INNINGS_END = _descriptor.Descriptor(
   serialized_end=1406,
 )
 
+
+_REP_MESSAGE_GAME_END = _descriptor.Descriptor(
+  name='rep_message_game_end',
+  full_name='rep_message_game_end',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='left_grade', full_name='rep_message_game_end.left_grade', index=0,
+      number=1, type=5, cpp_type=1, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='right_grade', full_name='rep_message_game_end.right_grade', index=1,
+      number=2, type=5, cpp_type=1, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='player_info', full_name='rep_message_game_end.player_info', index=2,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1408,
+  serialized_end=1513,
+)
+
 _STRUCT_PLAYER_INFO.fields_by_name['level'].enum_type = _ENUM_PLAYER_LEVEL
 _STRUCT_PLAYER_INFO.fields_by_name['proficiency'].enum_type = _ENUM_PLAYER_PROFICIENCY
 _REP_MESSAGE_LOGIN_GAME.fields_by_name['player_info'].message_type = _STRUCT_PLAYER_INFO
@@ -871,6 +916,7 @@ _REP_MESSAGE_PLAYER_INFO.fields_by_name['player_info'].message_type = _STRUCT_PL
 _REP_MESSAGE_MATCH_SUCCESS.fields_by_name['player_info'].message_type = _STRUCT_PLAYER_INFO
 _REP_MESSAGE_START_READY.fields_by_name['player_info'].message_type = _STRUCT_PLAYER_INFO
 _REP_MESSAGE_START_GAME.fields_by_name['player_info'].message_type = _STRUCT_PLAYER_INFO
+_REP_MESSAGE_GAME_END.fields_by_name['player_info'].message_type = _STRUCT_PLAYER_INFO
 DESCRIPTOR.message_types_by_name['root_proto'] = _ROOT_PROTO
 DESCRIPTOR.message_types_by_name['struct_player_info'] = _STRUCT_PLAYER_INFO
 DESCRIPTOR.message_types_by_name['req_message_login_game'] = _REQ_MESSAGE_LOGIN_GAME
@@ -887,6 +933,7 @@ DESCRIPTOR.message_types_by_name['req_message_updata_grade'] = _REQ_MESSAGE_UPDA
 DESCRIPTOR.message_types_by_name['rep_message_updata_grade'] = _REP_MESSAGE_UPDATA_GRADE
 DESCRIPTOR.message_types_by_name['rep_message_updata_opponent_grade'] = _REP_MESSAGE_UPDATA_OPPONENT_GRADE
 DESCRIPTOR.message_types_by_name['rep_message_innings_end'] = _REP_MESSAGE_INNINGS_END
+DESCRIPTOR.message_types_by_name['rep_message_game_end'] = _REP_MESSAGE_GAME_END
 DESCRIPTOR.enum_types_by_name['ERROR_CODE'] = _ERROR_CODE
 DESCRIPTOR.enum_types_by_name['enum_player_level'] = _ENUM_PLAYER_LEVEL
 DESCRIPTOR.enum_types_by_name['enum_player_proficiency'] = _ENUM_PLAYER_PROFICIENCY
@@ -1003,6 +1050,13 @@ rep_message_innings_end = _reflection.GeneratedProtocolMessageType('rep_message_
   # @@protoc_insertion_point(class_scope:rep_message_innings_end)
   ))
 _sym_db.RegisterMessage(rep_message_innings_end)
+
+rep_message_game_end = _reflection.GeneratedProtocolMessageType('rep_message_game_end', (_message.Message,), dict(
+  DESCRIPTOR = _REP_MESSAGE_GAME_END,
+  __module__ = 'cmd_pb2'
+  # @@protoc_insertion_point(class_scope:rep_message_game_end)
+  ))
+_sym_db.RegisterMessage(rep_message_game_end)
 
 
 # @@protoc_insertion_point(module_scope)
