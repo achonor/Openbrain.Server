@@ -1,8 +1,9 @@
 #!usr/bin/env python3
 #coding=utf-8
 
-
+import atexit
 import GameData
+import functions
 from proto import cmd_pb2
 
 '''玩家的信息'''
@@ -70,9 +71,10 @@ class GamePlayer(object):
             self.observation = value
         elif (5 == key):
             self.memory = value
+
     @staticmethod
-    def createAI(self):
-        rand_player_data = GameData.gameSQL.SelectBySqlFile("rand_user")
+    def createAI():
+        rand_player_data = GameData.gameSQL.SelectBySqlFile("rand_user", None)
         ai_player = GamePlayer(None, rand_player_data[0][1], rand_player_data[0][2], rand_player_data[0][3])
         ai_player.isAI = True
         ai_player.UpdatePlayerDataByDBResult(rand_player_data)
@@ -141,7 +143,10 @@ class GamePlayer(object):
         proto.grade = self.grade
 
     #提交玩家数据到数据库
+    @atexit.register
     def UpdateToDB(self):
+        if (self.isAI):
+            return
         #写入user表
         GameData.gameSQL.UpdateBySqlFile("update_user_all_by_id",
                                          [self.userName, self.userIcon, self.energy, self.gems, self.level, self.proficiency,
@@ -149,6 +154,8 @@ class GamePlayer(object):
 
     #同步数据库数据
     def UpdatePlayerDataByDBResult(self, ret):
+        if (self.isAI):
+            return
         self.userName = ret[0][2]
         self.userIcon = ret[0][3]
         self.energy = ret[0][4]
@@ -168,17 +175,17 @@ class GamePlayer(object):
     def updateAttributeByGrade(self, play_id, grade):
         ret_list = []
         #获取玩法数据
-        play_data = GameData.PlayDataConfig.getDataByID(play_id)
+        play_data = GameData.playDataConfig.getDataByID(play_id)
         for idx in range(len(play_data.expect_grade_scale)):
             expect_grade = (play_data.expect_grade_scale[idx] * self[idx])
-            new_attr = (grade - expect_grade) * play_data.attribute[idx]
-            ret_list[idx] = new_attr - self[idx]
+            new_attr = (grade - expect_grade) * play_data.attribute[idx] * 0.0001
+            new_attr = functions.numberClamp(self[idx] + new_attr, 0, 100)
+            ret_list.append(new_attr - self[idx])
             self[idx] = new_attr;
         return ret_list
 
     def __del__(self):
         self.UpdateToDB()
-
     @property
     def linkProto(self):
         return self.__linkProto

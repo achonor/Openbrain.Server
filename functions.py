@@ -2,6 +2,7 @@
 #coding=utf-8
 import time
 import copy
+import math
 import random
 import functools
 from proto import cmd_pb2
@@ -68,3 +69,6 @@ def serialization(proto, connectID = 0, messageID = 0):
 def listToRepeated(src_list, des_repeate):
     for var in src_list:
         des_repeate.append(var)
+
+def numberClamp(value, min_value, max_value):
+    return min(max(value, min_value), max_value)

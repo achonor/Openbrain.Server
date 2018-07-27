@@ -220,5 +220,7 @@ class GameServer(object):
             return
         self.__connectIDToUserID.pop(connectID)
         player = self.__playerDict.pop(userID)
+        #同步数据到数据库
+        player.UpdateToDB()
         #从匹配队列中删除
         GameData.gameMatch.removeMatch(player)
