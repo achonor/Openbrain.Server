@@ -15,7 +15,7 @@ from twisted.internet.defer import inlineCallbacks, Deferred
 
 
 #游戏局数
-TOTAL_INNINGS = 1
+TOTAL_INNINGS = 3
 
 #开始准备时间
 READY_STAY_TIME = 5

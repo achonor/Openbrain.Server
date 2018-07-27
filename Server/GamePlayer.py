@@ -154,8 +154,6 @@ class GamePlayer(object):
 
     #同步数据库数据
     def UpdatePlayerDataByDBResult(self, ret):
-        if (self.isAI):
-            return
         self.userName = ret[0][2]
         self.userIcon = ret[0][3]
         self.energy = ret[0][4]
