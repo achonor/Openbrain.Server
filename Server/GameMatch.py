@@ -6,20 +6,22 @@
 import math
 import functions
 import GameData
+from Server.GamePlayer import GamePlayer
 
 #容差值，相差多少的玩家可以匹配到一起
 ToleranceValue = 100
-
+#超时匹配机器人
+MatchTimeout = 5;
 
 TAG = "GameMatch: "
 class MatchData:
     def __init__(self, _player):
         self.player = _player
         #开始匹配的时间
-        self.startTime = functions.getSystemTime()
+        self.start_time = functions.getSystemTime()
 
     def __cmp__(self, other):
-        return self.player.startTime < other.startTime
+        return self.player.start_time < other.start_time
 
     def getValue(self):
         return self.player.ranking
@@ -27,7 +29,7 @@ class MatchData:
     #匹配权值范围
     def getMatchRange(self):
         curTime = functions.getSystemTime()
-        offset = ToleranceValue + (curTime - self.startTime)
+        offset = ToleranceValue + (curTime - self.start_time)
         return [self.player.ranking - offset, self.player.ranking + offset]
 
 class GameMatch:
@@ -66,11 +68,14 @@ class GameMatch:
                     #匹配成功
                     successList[match1] = nearData
                     successList[nearData] = match1
+                elif (MatchTimeout < functions.getSystemTime() - match1.start_time):
+                    #超时了
+                    ai_match = MatchData(GamePlayer.createAI())
+                    successList[match1] = ai_match
             #处理匹配成功数据
             for key, values in successList.items():
                 #从队列移除
-                if ("D532B5446BA9E5AC90AB5138D1BD19BC" != key.player.userID):
-                    self.removeMatch(key.player)
+                self.removeMatch(key.player)
                 #推送匹配成功
                 GameData.gameServer.sendMatchSuccess(key.player, values.player)
         except Exception as e:

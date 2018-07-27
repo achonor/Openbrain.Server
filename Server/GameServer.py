@@ -62,7 +62,7 @@ class GameServer(object):
             return
         def _sendData(rProto):
             #发送数据
-            GameData.gameFactory.returnData(linkProto, requestProto.message_ID, rProto)
+            GameData.gameFactory.returnDataByLink(linkProto, requestProto.message_ID, rProto)
         #处理数据
         requestFunc(requestPlayer, linkProto, className, requestProto, _sendData)
 
@@ -154,7 +154,7 @@ class GameServer(object):
             #给玩家对手推送分数
             tmpProto = cmd_pb2.rep_message_updata_opponent_grade()
             tmpProto.grade = rProto.grade
-            GameData.gameFactory.returnData(opponent.linkProto, 0, tmpProto)
+            GameData.gameFactory.returnData(opponent, 0, tmpProto)
         except GameException as e:
             rProto.isOK = e.error_code
 
@@ -166,7 +166,7 @@ class GameServer(object):
         #设置玩家信息
         player.SetPlayerInfoToProto(rProto.player_info)
         #推送协议
-        GameData.gameFactory.returnData(player.linkProto, 0, rProto)
+        GameData.gameFactory.returnData(player, 0, rProto)
 
     #推送匹配成功
     def sendMatchSuccess(self, player, otherPlayer):
@@ -174,7 +174,7 @@ class GameServer(object):
             rProto = cmd_pb2.rep_message_match_success()
             otherPlayer.SetPlayerInfoToProto(rProto.player_info)
             #推送协议
-            GameData.gameFactory.returnData(player.linkProto, 0, rProto)
+            GameData.gameFactory.returnData(player, 0, rProto)
             #添加裁判
             if (None == self.__refereeDict.get(player) and None == self.__refereeDict.get(otherPlayer)):
                 referee = GameReferee(player, otherPlayer)
@@ -187,17 +187,19 @@ class GameServer(object):
     #推送局结束
     def sendInningsEnd(self, player1, player2, rProto):
         # 推送协议
-        GameData.gameFactory.returnData(player1.linkProto, 0, rProto)
-        GameData.gameFactory.returnData(player2.linkProto, 0, rProto)
+        GameData.gameFactory.returnData(player1, 0, rProto)
+        GameData.gameFactory.returnData(player2, 0, rProto)
     #推送游戏结束
     def sendGameEnd(self, player1, player2, rProto1, rProto2):
         #删除裁判
         self.__refereeDict.pop(player1, None)
         self.__refereeDict.pop(player2, None)
         # 推送协议
-        GameData.gameFactory.returnData(player1.linkProto, 0, rProto1)
-        GameData.gameFactory.returnData(player2.linkProto, 0, rProto2)
-
+        GameData.gameFactory.returnData(player1, 0, rProto1)
+        GameData.gameFactory.returnData(player2, 0, rProto2)
+        #推送一次玩家属性变更
+        self.sendPlayerInfo(player1)
+        self.sendPlayerInfo(player2)
     #获取玩家
     def getPlayer(self, userID):
         return self.__playerDict.get(userID)

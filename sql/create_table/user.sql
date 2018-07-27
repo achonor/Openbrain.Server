@@ -11,7 +11,7 @@
  Target Server Version : 80011
  File Encoding         : 65001
 
- Date: 24/07/2018 10:12:52
+ Date: 27/07/2018 18:50:06
 */
 
 SET NAMES utf8mb4;
@@ -22,6 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
+  `PID` int(11) NOT NULL AUTO_INCREMENT,
   `ID` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
   `UserIcon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
@@ -37,7 +38,7 @@ CREATE TABLE `user`  (
   `Memory` float NULL DEFAULT 0,
   `Ranking` int(11) NOT NULL,
   `Grade` int(11) NULL DEFAULT 0,
-  PRIMARY KEY (`ID`) USING BTREE
+  PRIMARY KEY (`PID`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;

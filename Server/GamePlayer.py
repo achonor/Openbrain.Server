@@ -9,6 +9,8 @@ from proto import cmd_pb2
 
 class GamePlayer(object):
     def __init__(self, linkProto, userID, userName, userIcon):
+        #是否是AI
+        self.isAI = False
         #玩家的链接
         self.__linkProto = linkProto
         #ID
@@ -41,6 +43,41 @@ class GamePlayer(object):
         self.ranking = 0
         #分数
         self.grade = 0
+
+    def __getitem__(self, key):
+        if (0 == key):
+            return self.speed
+        elif (1 == key):
+            return self.judgment
+        elif (2 == key):
+            return self.calculate
+        elif (3 == key):
+            return self.accuracy
+        elif (4 == key):
+            return self.observation
+        elif (5 == key):
+            return self.memory
+    def __setitem__(self, key, value):
+        if (0 == key):
+            self.speed = value
+        elif (1 == key):
+            self.judgment = value
+        elif (2 == key):
+            self.calculate = value
+        elif (3 == key):
+            self.accuracy = value
+        elif (4 == key):
+            self.observation = value
+        elif (5 == key):
+            self.memory = value
+    @staticmethod
+    def createAI(self):
+        rand_player_data = GameData.gameSQL.SelectBySqlFile("rand_user")
+        ai_player = GamePlayer(None, rand_player_data[0][1], rand_player_data[0][2], rand_player_data[0][3])
+        ai_player.isAI = True
+        ai_player.UpdatePlayerDataByDBResult(rand_player_data)
+        return ai_player
+
     #玩家注册初始化
     def InitPlayer(self):
         self.energy = 15
@@ -112,20 +149,32 @@ class GamePlayer(object):
 
     #同步数据库数据
     def UpdatePlayerDataByDBResult(self, ret):
-        self.userName = ret[0][1]
-        self.userIcon = ret[0][2]
-        self.energy = ret[0][3]
-        self.gems = ret[0][4]
-        self.level = ret[0][5]
-        self.proficiency = ret[0][6]
-        self.speed = ret[0][7]
-        self.judgment = ret[0][8]
-        self.calculate = ret[0][9]
-        self.accuracy = ret[0][10]
-        self.observation = ret[0][11]
-        self.memory = ret[0][12]
-        self.ranking = ret[0][13]
-        self.grade = ret[0][14]
+        self.userName = ret[0][2]
+        self.userIcon = ret[0][3]
+        self.energy = ret[0][4]
+        self.gems = ret[0][5]
+        self.level = ret[0][6]
+        self.proficiency = ret[0][7]
+        self.speed = ret[0][8]
+        self.judgment = ret[0][9]
+        self.calculate = ret[0][10]
+        self.accuracy = ret[0][11]
+        self.observation = ret[0][12]
+        self.memory = ret[0][13]
+        self.ranking = ret[0][14]
+        self.grade = ret[0][15]
+
+    #通过游戏分数计算属性变化, 返回属性变化
+    def updateAttributeByGrade(self, play_id, grade):
+        ret_list = []
+        #获取玩法数据
+        play_data = GameData.PlayDataConfig.getDataByID(play_id)
+        for idx in range(len(play_data.expect_grade_scale)):
+            expect_grade = (play_data.expect_grade_scale[idx] * self[idx])
+            new_attr = (grade - expect_grade) * play_data.attribute[idx]
+            ret_list[idx] = new_attr - self[idx]
+            self[idx] = new_attr;
+        return ret_list
 
     def __del__(self):
         self.UpdateToDB()

@@ -82,25 +82,33 @@ class GameReferee:
                 rProto = cmd_pb2.rep_message_innings_end()
                 rProto.has_innings = (self.innings_idx < TOTAL_INNINGS)
                 GameData.gameServer.sendInningsEnd(self.players[0], self.players[1], rProto)
-            #计算玩家属性变化
-            for idx in range(len(self.players)):
-                player = self.players[idx]
-                sum_grade = 0
-                for innings in self.innings_list:
-                    sum_grade += innings.grade[player]
-                
-            #推送游戏结束
-            rPtotos = []
+            #游戏结束
+            rProtos = []
             for idx in range(len(self.players)):
                 player = self.players[idx]
                 opponent = self.getOpponent(player)
-                rPtotos.append(cmd_pb2.rep_message_game_end())
-                opponent.SetPlayerInfoToProto(rPtotos[idx].player_info)
+                rProto = cmd_pb2.rep_message_game_end()
+                #每局的玩法，分数
                 for innings in self.innings_list:
-                    rPtotos[idx].left_grade.append(innings.grade[player])
-                    rPtotos[idx].right_grade.append(innings.grade[opponent])
-            GameData.gameServer.sendGameEnd(self.players[0], self.players[1], rPtotos[0], rPtotos[1])
-
+                    rProto.play_list.append(innings.play_id)
+                    rProto.left_grade.append(innings.grade[player])
+                    rProto.right_grade.append(innings.grade[opponent])
+                    #更新玩家属性
+                    attr_offset = player.updateAttributeByGrade(innings.play_id, innings.grade[player])
+                    for idx in range(len(attr_offset)):
+                        if (idx < len(rProto.attribute_offset)):
+                            rProto.attribute_offset[idx] += attr_offset[idx]
+                        else:
+                            rProto.attribute_offset.append(attr_offset[idx])
+                rProtos.append(rProto)
+            #对手信息
+            for idx in range(len(self.players)):
+                rProto = rProtos[idx]
+                player = self.players[idx]
+                opponent = self.getOpponent(player)
+                #对手信息
+                opponent.SetPlayerInfoToProto(rProto.player_info)
+            GameData.gameServer.sendGameEnd(self.players[0], self.players[1], rProtos[0], rProtos[1])
         except Exception as e:
             print(TAG, "Error: ", e)
     #更新分数

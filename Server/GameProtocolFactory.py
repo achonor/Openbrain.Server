@@ -33,11 +33,17 @@ class GameProtocolFactory(ServerFactory):
         GameData.gameServer.requestServer(linkProto, rootProto)
 
     #返回数据给客户端
-    def returnData(self, linkProto, messageID, proto):
+    def returnDataByLink(self, linkProto, messageID, proto):
         #序列化协议
         rspData = functions.serialization(proto, linkProto.connectID, messageID)
         #发送数据
         linkProto.sendData(rspData)
+
+    # 返回数据给客户端
+    def returnData(self, player, messageID, proto):
+        if (True == player.isAI):
+            return
+        self.returnDataByLink(player.linkProto, messageID, proto)
 
     def connectionLost(self, connectID):
         #移除
