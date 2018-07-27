@@ -82,6 +82,13 @@ class GameReferee:
                 rProto = cmd_pb2.rep_message_innings_end()
                 rProto.has_innings = (self.innings_idx < TOTAL_INNINGS)
                 GameData.gameServer.sendInningsEnd(self.players[0], self.players[1], rProto)
+            #计算玩家属性变化
+            for idx in range(len(self.players)):
+                player = self.players[idx]
+                sum_grade = 0
+                for innings in self.innings_list:
+                    sum_grade += innings.grade[player]
+                
             #推送游戏结束
             rPtotos = []
             for idx in range(len(self.players)):
