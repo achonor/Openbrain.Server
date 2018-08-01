@@ -32,7 +32,7 @@ class InningsData:
         #客户端展示随机玩法
         self.rand_play_id = random.sample(GameData.playDataConfig.getAllPlayID(), 3)
         #本局玩法
-        self.play_id = random.choice([0, 2])#(self.rand_play_id)
+        self.play_id = random.choice([3])#(self.rand_play_id)
         #玩法配置
         self.play_data = GameData.playDataConfig.getDataByID(self.play_id)
         #介绍结束时间
