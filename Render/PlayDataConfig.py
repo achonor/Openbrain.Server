@@ -36,7 +36,7 @@ class PlayDataConfig(DataReader):
         return self.__dataDict
 
     def getAllPlayID(self):
-        return self.__IDList
+        return [0, 1, 3]#self.__IDList
 
     def getDataConfigName(self):
         return "play_data.bin"
